@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NUMBER</title>
+  <style>
+    #viewNumber {
+      width: 300px;
+      height: 300px;
+      background: black;
+      margin: auto;
+      border: solid 1px red;
+      color: white;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    #btnSelect {
+      width: 200px;
+      height: 200px;
+      background: rgb(65, 200, 20);
+      margin: auto;
+      border: solid 1px rgb(89, 0, 255);
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div style="width: 10%; margin: auto;">
+    <input type="text" id="document" placeholder="Digitar Numero de Documento" />
+    <input type="text" id="viewNumber" disabled /></br>
+    <button id="btnSelect" onclick="validateNuber()">PUESTO</button>
+    <!--<button id="btnSelect" onclick="" disabled>REINICIO</button>-->
+  </div>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>
+          <td>DOCUMENTO</td>
+          <td>PUESTO</td>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+
+      </tbody>
+      <tfoot>
+
+      </tfoot>
+    </table>
+  </div>
+
+
+  <script>
+    var objView = document.getElementById('viewNumber');
+    var objTable=document.getElementById('tbody');
+    var numPC = new Array();
+    var cont = 0;
+    var numMax = 5;
+    var numMin = 1;
+    var numCurrent = 0;
+    var validateDuplicate = true;
+    createListNumber();
+    function validateNuber() {
+
+
+      assignment();
+    }
+
+    function getRandomInt() {
+      min = Math.ceil(numMin);
+      max = Math.floor(numMax);
+      return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is exclusive and the minimum is inclusive
+    }
+
+    function createListNumber() {
+      for (i = 1; i <= numMax; i++) {
+        numPC.push(i);
+      }
+
+    }
+
+    function assignment() {
+
+      if (numPC.length >= 1) {
+        while (cont < 1) {
+          let getNum = getRandomInt();
+          if (numPC.includes(getNum)) {
+            numPC = numPC.filter(numPC => numPC != getNum);
+            alert('Puesto Asignado ' + getNum);
+            viewNum(getNum);
+            cont = 1;
+          }
+        }
+        cont = 0;
+        console.log(numPC);
+      } else {
+        alert('Terminación de Secuencia ');
+      }
+    }
+
+    function viewNum(num) {
+      objView.value = num;
+    }
+    function createRow(document, num){
+
+    }
+
+  </script>
+</body>
+
+</html>
