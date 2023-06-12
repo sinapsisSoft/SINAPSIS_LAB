@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Name of My Form One</title>
   <!--Etiqueta de enlace con los estilos <link>-->
-  <link href="../assets/css/style.css" rel="stylesheet" />
+  <link href="../../assets/css/style.css" rel="stylesheet" />
 </head>
 <!--El cuerpo representa la parte visible de todo documento y es especificado entre etiquetas <body>-->
 
@@ -88,7 +88,14 @@
               <!--Cierre de etiqueta de opciones de lista <option>-->
             </select>
             <!--Cierre de la lista <select>-->
+          </td>
+          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+        </tr>
+        <!--Cierre de fila para de la tabla - etiqueta de fila <tr>-->
 
+        <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
+        <tr>
+          <td>
             <!--Caja de texto etiqueta input - type => tipo texto <input>-->
             <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
             <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
@@ -97,14 +104,7 @@
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
             <input type="number" value="" placeholder="Digitar Documento" id="document" name="document" required />
-
           </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
-        </tr>
-        <!--Cierre de fila para de la tabla - etiqueta de fila <tr>-->
-
-        <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
-        <tr>
           <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
           <td>
             <!--Caja de texto etiqueta input - type => tipo email <input>-->
@@ -130,25 +130,25 @@
             <input type="text" value="" placeholder="Digitar Dirección" id="address" name="address" required />
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
-
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--Caja de texto etiqueta input - type => tipo numero <input>-->
-            <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
-            <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
-            <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
-            <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="number" value="" placeholder="Digitar Celular" id="cellphone" name="cellphone" required />
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
         </tr>
         <!--Cierre de fila para de la tabla - etiqueta de fila <tr>-->
 
         <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
         <tr>
           <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
+          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
+            <td>
+              <!--Caja de texto etiqueta input - type => tipo numero <input>-->
+              <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
+              <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
+              <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
+              <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
+              <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
+              <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
+              <input type="number" value="" placeholder="Digitar Celular" id="cellphone" name="cellphone" required />
+            </td>
+            <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+
           <td>
             <!--Caja de texto etiqueta input - type => tipo date <input>-->
             <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
@@ -161,7 +161,7 @@
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
           <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
+          <td style="text-align: center;">
             <!--Caja de texto etiqueta input - type => tipo color <input>-->
             <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
             <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
@@ -169,10 +169,10 @@
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
             <input type="color" value="" id="color" name="color" required />
-          </td>
+        
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
           <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
+         
             <!--Caja de texto etiqueta input - type => tipo numero <input>-->
             <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
             <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
@@ -195,7 +195,7 @@
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="submit" value="ENVIAR" id="btnSubmit" name="btnSubmit" required />
+            <input type="submit" value="ENVIAR" id="btnSubmit" name="btnSubmit"  class="btnSubmit" required />
 
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
@@ -240,7 +240,7 @@
       <!--Inicio de cuerpo de tabla para los contenidos de la tabla  - etiqueta de cabeza tabla <tbody>-->
 
       <tbody>
-        <tr>
+        <tr class="checkTr">
           <td>DIEGO</td>
           <td>CASALLAS</td>
           <td>CC</td>
@@ -281,7 +281,8 @@
   <!--*****************************************************************************************************************-->
 
   <!--Etiqueta de enlace con la logíca de javascript <script>-->
-  <script src="../assets/js/main.js" type="javascript"></script>
+  <script src="../../assets/js/main.js" type="javascript"></script>
+
 </body>
 
 </html>
