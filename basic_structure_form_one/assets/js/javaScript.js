@@ -88,33 +88,27 @@ console.log(result);
 console.log("******CICLOS FOR ******");
 let auxNum1 = new Array();
 let auxNum2 = new Array();
-let auxOpe = new Array('+','-','*','/');
+let auxOpe = new Array("+", "-", "*", "/");
 
 for (i = 0; i < 10; i++) {
-  num1=num1+i;
-  auxNum1[i]=num1;
-  num2=num1*2;
-  auxNum2[i]=num2;
+  num1 = num1 + i;
+  auxNum1[i] = num1;
+  num2 = num1 * 2;
+  auxNum2[i] = num2;
 
-ope=auxOpe[cont];
-  if (cont==3) {
+  ope = auxOpe[cont];
+  if (cont == 3) {
     cont = 0;
 
     cont = cont + 1;
-    
-  }else{
+  } else {
     console.log(i);
     cont = cont + 1;
-
   }
-    
 
-    ope = auxNum1[i]+ope +auxNum2[i];
-result = eval(ope);
+  ope = auxNum1[i] + ope + auxNum2[i];
+  result = eval(ope);
 
-console.log(result);
-console.log("***** " +i);
-
+  console.log(result);
+  console.log("***** " + i);
 }
-
-
