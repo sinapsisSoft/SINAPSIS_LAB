@@ -81,34 +81,36 @@ switch (operacion) {
 console.log(ope);
 ope = num1 + ope + num2;
 result = eval(ope);
+validateOperations();
+console.log("******FUNCION******");
+validateOperations() ;
+validateOperations() ;
+function validateOperations() {
+  console.log("******CICLOS FOR ******");
+  let auxNum1 = new Array();
+  let auxNum2 = new Array();
+  let auxOpe = new Array("+", "-", "*", "/");
 
-console.log(ope);
-console.log(result);
+  for (i = 0; i < 10; i++) {
+    num1 = num1 + i;
+    auxNum1[i] = num1;
+    num2 = num1 * 2;
+    auxNum2[i] = num2;
 
-console.log("******CICLOS FOR ******");
-let auxNum1 = new Array();
-let auxNum2 = new Array();
-let auxOpe = new Array("+", "-", "*", "/");
+    ope = auxOpe[cont];
+    if (cont == 3) {
+      cont = 0;
 
-for (i = 0; i < 10; i++) {
-  num1 = num1 + i;
-  auxNum1[i] = num1;
-  num2 = num1 * 2;
-  auxNum2[i] = num2;
+      cont = cont + 1;
+    } else {
+      console.log(i);
+      cont = cont + 1;
+    }
 
-  ope = auxOpe[cont];
-  if (cont == 3) {
-    cont = 0;
+    ope = auxNum1[i] + ope + auxNum2[i];
+    result = eval(ope);
 
-    cont = cont + 1;
-  } else {
-    console.log(i);
-    cont = cont + 1;
+    console.log(result);
+    console.log("***** " + i);
   }
-
-  ope = auxNum1[i] + ope + auxNum2[i];
-  result = eval(ope);
-
-  console.log(result);
-  console.log("***** " + i);
 }
