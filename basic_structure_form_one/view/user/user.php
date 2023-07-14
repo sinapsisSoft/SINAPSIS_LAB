@@ -1,3 +1,10 @@
+<!-- 
+  #Ahutor:DIEGO CASALLAS
+  #Busines: 
+  #Date:14/07/2023
+  #Description:View user
+  #Vesion:1.0
+-->
 <!--<!DOCTYPE html> En primer lugar necesitamos indicar el tipo de documento que estamos creando. Esto en HTML5 es extremadamente sencillo: -->
 <!DOCTYPE html>
 <!--Luego de declarar el tipo de documento, debemos comenzar a construir la estructura HTML-->
