@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-07-2023 a las 18:54:05
+-- Tiempo de generación: 14-07-2023 a las 23:55:47
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -67,8 +67,12 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `Profile_document` varchar(20) NOT NULL,
   `DocumentType_id` int(11) NOT NULL,
   `GenderType_id` int(11) NOT NULL,
+  `User_id` int(11) NOT NULL,
   `Profile_birthdate` date NOT NULL,
-  PRIMARY KEY (`Profile_id`)
+  PRIMARY KEY (`Profile_id`),
+  KEY `profile_document_type` (`DocumentType_id`),
+  KEY `profile_gender_type` (`GenderType_id`),
+  KEY `profile_user` (`User_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -83,7 +87,16 @@ CREATE TABLE IF NOT EXISTS `status` (
   `Status_name` varchar(60) NOT NULL,
   `Status_descriptions` varchar(80) NOT NULL,
   PRIMARY KEY (`Status_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `status`
+--
+
+INSERT INTO `status` (`Status_id`, `Status_name`, `Status_descriptions`) VALUES
+(1, 'Active', 'Is Active Status '),
+(2, 'Bloqueado', 'Esto es un estado bloqueado'),
+(3, 'Cancelado', 'Esto es un estado cancelado');
 
 -- --------------------------------------------------------
 
@@ -100,11 +113,29 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`User_id`),
   UNIQUE KEY `User_name` (`User_name`),
   KEY `user_status` (`Status_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`User_id`, `User_name`, `User_password`, `Status_id`) VALUES
+(1, 'dieher@gmail.com', '123456', 1),
+(5, 'nombre@gmail.com', '121212121', 1),
+(7, 'otro@gmail.com', '32115254574', 1),
+(8, 'otro112@gmail.com', '232323', 2);
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `profile`
+--
+ALTER TABLE `profile`
+  ADD CONSTRAINT `profile_document_type` FOREIGN KEY (`DocumentType_id`) REFERENCES `documenttype_id` (`DocumentType_id`),
+  ADD CONSTRAINT `profile_gender_type` FOREIGN KEY (`GenderType_id`) REFERENCES `gendertype` (`GenderType_id`),
+  ADD CONSTRAINT `profile_user` FOREIGN KEY (`User_id`) REFERENCES `user` (`User_id`);
 
 --
 -- Filtros para la tabla `user`
