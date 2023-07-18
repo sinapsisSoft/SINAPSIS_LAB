@@ -1,3 +1,30 @@
+<?php
+include("../../config/config.php");
+
+
+$sql = "CALL sp_select_all_user(); ";
+$sql.= "SELECT * FROM `document_type` WHERE 1;";
+$sql.= "SELECT * FROM `gendertype` WHERE 1;";
+$resultArray=array();
+if (!$connect->multi_query($sql)) {
+  echo "Falló la multiconsulta: (" . $connect->errno . ") " . $connect->error;
+}
+
+do {
+  if ($resultado = $connect->store_result()) {
+
+  
+      $result = $resultado->fetch_all(MYSQLI_NUM);
+      array_push($resultArray,$result);
+
+      $resultado->free();
+  }
+} while ($connect->more_results() && $connect->next_result());
+$resultUser=$resultArray[0];
+$resultDocumentType=$resultArray[1];
+$resultGenderType=$resultArray[2];
+
+?>
 <!-- 
   #Ahutor:DIEGO CASALLAS
   #Busines: 
@@ -83,16 +110,13 @@
             <select name="typeDocument" id="typeDocument" required>
               <!--Inicio de etiqueta de opciones de lista <option>-->
               <!--Valor de la opción - value => valor de la opción <option>-->
-              <option value="0">CE</option>
-              <!--Cierre de etiqueta de opciones de lista <option>-->
-              <!--Inicio de etiqueta de opciones de lista <option>-->
-              <!--Valor de la opción - value => valor de la opción <option>-->
-              <option value="1">CC</option>
-              <!--Cierre de etiqueta de opciones de lista <option>-->
-              <!--Inicio de etiqueta de opciones de lista <option>-->
-              <!--Valor de la opción - value => valor de la opción <option>-->
-              <option value="2">TI</option>
-              <!--Cierre de etiqueta de opciones de lista <option>-->
+              <?php 
+              for ($i = 0; $i < count($resultDocumentType); $i++) {
+                echo'<option value="'.$resultDocumentType[$i][0].'">'.$resultDocumentType[$i][1].'</option>';
+              };
+   
+              ?>
+              
             </select>
             <!--Cierre de la lista <select>-->
 
@@ -170,15 +194,13 @@
             <select name="typeGender" id="typeGender" required>
               <!--Inicio de etiqueta de opciones de lista <option>-->
               <!--Valor de la opción - value => valor de la opción <option>-->
-              <option value="0">FEMENINO</option>
-              <!--Cierre de etiqueta de opciones de lista <option>-->
-              <!--Inicio de etiqueta de opciones de lista <option>-->
-              <!--Valor de la opción - value => valor de la opción <option>-->
-              <option value="1">MASCULINO</option>
-              <!--Cierre de etiqueta de opciones de lista <option>-->
-              <!--Inicio de etiqueta de opciones de lista <option>-->
-              <!--Valor de la opción - value => valor de la opción <option>-->
-              <option value="2">OTRO</option>
+              <?php 
+              for ($i = 0; $i < count($resultGenderType); $i++) {
+                echo'<option value="'.$resultGenderType[$i][0].'">'.$resultGenderType[$i][1].'</option>';
+              };
+   
+              ?>
+           
               <!--Cierre de etiqueta de opciones de lista <option>-->
             </select>
             <!--Cierre de la lista <select>-->
@@ -198,7 +220,7 @@
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
         </tr>
         <!--Cierre de fila para de la tabla - etiqueta de fila <tr>-->
-        
+
 
         <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
         <tr>
@@ -219,7 +241,7 @@
 
       </table>
       <!--Cierre de tabla para los contenidos del formulario - etiqueta de tabla <table>-->
-        <h3>SEGURIDAD</h3>
+      <h3>SEGURIDAD</h3>
       <table class="tableUser">
         <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
         <tr>
@@ -257,13 +279,12 @@
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="password" value="" placeholder="Repetir Contraseña" id="passwordRepeat" name="passwordRepeat"
-              required />
+            <input type="password" value="" placeholder="Repetir Contraseña" id="passwordRepeat" name="passwordRepeat" required />
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
           <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
           <td style="text-align: center;">
-            <button type="button" name="btnViewPassword" id="btnViewPassword"  class="btnViewPassword" value="" > <img src="../../assets/img/icons/lock.png" width="30px"> </button>
+            <button type="button" name="btnViewPassword" id="btnViewPassword" class="btnViewPassword" value=""> <img src="../../assets/img/icons/lock.png" width="30px"> </button>
 
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
@@ -285,44 +306,45 @@
     <h2 style="text-align: center;">LISTA DE USUARIOS</h2>
     <div>
       <form>
-      <table name="tableViewUserSearch" id="tableViewUserSearch" class="tableViewUserSearch">
-        <tr>
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--La etiqueta select (<select>) de HTML representa un control que muestra un menú de opciones-->
-            <!--Inicio de la lista <select>-->
-            <!--lista de selección select - required => indica que la caja de texto es requerida (obligatoria) <select>-->
-            <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
-            <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
-            <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
-            <select name="typeSearch" id="typeSearch" required>
-              <!--Inicio de etiqueta de opciones de lista <option>-->
-              <!--Valor de la opción - value => valor de la opción <option>-->
-              <option value="0">DOCUMENTO</option>
-              <!--Cierre de etiqueta de opciones de lista <option>-->
-              <!--Inicio de etiqueta de opciones de lista <option>-->
-              <!--Valor de la opción - value => valor de la opción <option>-->
-              <option value="1">NOMBRE</option>
-              <!--Cierre de etiqueta de opciones de lista <option>-->
-              <!--Inicio de etiqueta de opciones de lista <option>-->
-              <!--Valor de la opción - value => valor de la opción <option>-->
-              <option value="2">APELLIDO</option>
-              <!--Cierre de etiqueta de opciones de lista <option>-->
-              <!--Cierre de etiqueta de opciones de lista <option>-->
-              <!--Inicio de etiqueta de opciones de lista <option>-->
-              <!--Valor de la opción - value => valor de la opción <option>-->
-              <option value="3">CORREO</option>
-              <!--Cierre de etiqueta de opciones de lista <option>-->
-            </select>
-            <!--Cierre de la lista <select>-->
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
-          <td> <input type="search" value="" placeholder="Digitar busqueda"  required/> </td>
-          <td style="text-align: center;"> <button> <img src="../../assets/img/icons/search.png" /> </button></td>
-        </tr>
-   
-      </table>
-    </form>
+        <table name="tableViewUserSearch" id="tableViewUserSearch" class="tableViewUserSearch">
+          <tr>
+            <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
+            <td>
+              <!--La etiqueta select (<select>) de HTML representa un control que muestra un menú de opciones-->
+              <!--Inicio de la lista <select>-->
+              <!--lista de selección select - required => indica que la caja de texto es requerida (obligatoria) <select>-->
+              <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
+              <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
+              <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
+              <select name="typeSearch" id="typeSearch" required>
+                <!--Inicio de etiqueta de opciones de lista <option>-->
+                <!--Valor de la opción - value => valor de la opción <option>-->
+                  
+                <option value="0">DOCUMENTO</option>
+                <!--Cierre de etiqueta de opciones de lista <option>-->
+                <!--Inicio de etiqueta de opciones de lista <option>-->
+                <!--Valor de la opción - value => valor de la opción <option>-->
+                <option value="1">NOMBRE</option>
+                <!--Cierre de etiqueta de opciones de lista <option>-->
+                <!--Inicio de etiqueta de opciones de lista <option>-->
+                <!--Valor de la opción - value => valor de la opción <option>-->
+                <option value="2">APELLIDO</option>
+                <!--Cierre de etiqueta de opciones de lista <option>-->
+                <!--Cierre de etiqueta de opciones de lista <option>-->
+                <!--Inicio de etiqueta de opciones de lista <option>-->
+                <!--Valor de la opción - value => valor de la opción <option>-->
+                <option value="3">CORREO</option>
+                <!--Cierre de etiqueta de opciones de lista <option>-->
+              </select>
+              <!--Cierre de la lista <select>-->
+            </td>
+            <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+            <td> <input type="search" value="" placeholder="Digitar busqueda" required /> </td>
+            <td style="text-align: center;"> <button> <img src="../../assets/img/icons/search.png" /> </button></td>
+          </tr>
+
+        </table>
+      </form>
     </div>
 
     <!--Inicio de tabla para los contenidos del formulario - etiqueta de tabla <table>-->
@@ -336,74 +358,68 @@
         <tr>
 
           <!--Inicio de las columnas de la tabla de la cabecera  <th>-->
-            <th>#</th>
+          <th>#</th>
           <th>NOMBRE</th>
           <th>APELLIDO</th>
           <th>TIPO DE DOCUMENTO</th>
           <th>DOCUMENTO</th>
           <th>CORREO</th>
-          <th>DIRECCIÓN</th>
           <th>CELULAR</th>
+          <th>CONTRASEÑA</th>
           <th>GÉNERO</th>
           <th>FECHA DE NACIMIENTO</th>
+          <th>ESTADO</th>
           <th>ACCIONES</th>
+
         </tr>
       </thead>
       <!--Cierre de cabeza de tabla para los contenidos de la tabla  - etiqueta de cabeza tabla <thead>-->
       <!--Inicio de cuerpo de tabla para los contenidos de la tabla  - etiqueta de cabeza tabla <tbody>-->
 
       <tbody>
-        <tr class="checkTr">
-          <td>1</td>
-          <td>DIEGO</td>
-          <td>CASALLAS</td>
-          <td>CC</td>
-          <td>900867534</td>
-          <td>diego@gmail.com</td>
-          <td>Calle falsa 123</td>
-          <td>3001234567</td>
-          <td>02/02/1986</td>
-          <td>MASCULINO</td>
+        <?php
+        $rowUser=$resultUser;
+        for ($i = 0; $i < count($rowUser); $i++) {
+          echo '<tr class="checkTr">';
+          echo '<td>' . ($i + 1) . '</td>';
+          echo '<td>' . $rowUser[$i][1] . '</td>';
+          echo '<td>' . $rowUser[$i][2] . '</td>';
+          echo '<td>' . $rowUser[$i][3] . '</td>';
+          echo '<td>' . $rowUser[$i][4] . '</td>';
+          echo '<td>' . $rowUser[$i][5] . '</td>';
+          echo '<td>' . $rowUser[$i][6] . '</td>';
+          echo '<td>' . $rowUser[$i][7] . '</td>';
+          echo '<td>' . $rowUser[$i][8] . '</td>';
+          echo '<td>' . $rowUser[$i][9] . '</td>';
+          echo '<td>' . $rowUser[$i][10] . '</td>';
+          echo '
           <td class="btnsActions" style="text-align: center;">
             <button class="btnView"> <img src="../../assets/img/icons/visibility.png" /> </button>
             <button class="btnUpdate"> <img src="../../assets/img/icons/edit.png" /> </button>
-            <button class="btnDelete" > <img src="../../assets/img/icons/remove.png" /> </button>
+            <button class="btnDelete"> <img src="../../assets/img/icons/remove.png" /> </button>
           </td>
-        </tr>
-        <tr class="checkTr" >
-          <td>2</td>
-          <td>DIEGO</td>
-          <td>CASALLAS</td>
-          <td>CC</td>
-          <td>900867534</td>
-          <td>diego@gmail.com</td>
-          <td>Calle falsa 123</td>
-          <td>3001234567</td>
-          <td>02/02/1986</td>
-          <td>MASCULINO</td>
-          <td class="btnsActions" style="text-align: center;">
-            <button class="btnView"> <img src="../../assets/img/icons/visibility.png" /> </button>
-            <button class="btnUpdate"> <img src="../../assets/img/icons/edit.png" /> </button>
-            <button class="btnDelete" > <img src="../../assets/img/icons/remove.png" /> </button>
-          </td>
-        </tr>
+        </tr>';
+        };
+     
+        $connect->close();
+        ?>
       </tbody>
       <!--Cierre de cuerpo de tabla para los contenidos de la tabla  - etiqueta de cabeza tabla <tbody>-->
       <!--Inicio de pie de tabla para los contenidos de la tabla  - etiqueta de pie tabla <tfoot>-->
-
       <tfoot>
         <tr>
-          <td>#</td>
-          <td>NOMBRE</td>
-          <td>APELLIDO</td>
-          <td>TIPO DE DOCUMENTO</td>
-          <td>DOCUMENTO</td>
-          <td>CORREO</td>
-          <td>DIRECCIÓN</td>
-          <td>CELULAR</td>
-          <td>GÉNERO</td>
-          <td>FECHA DE NACIMIENTO</td>
-          <td>ACCIONES</td>
+          <th>#</th>
+          <th>NOMBRE</th>
+          <th>APELLIDO</th>
+          <th>TIPO DE DOCUMENTO</th>
+          <th>DOCUMENTO</th>
+          <th>CORREO</th>
+          <th>CELULAR</th>
+          <th>CONTRASEÑA</th>
+          <th>GÉNERO</th>
+          <th>FECHA DE NACIMIENTO</th>
+          <th>ESTADO</th>
+          <th>ACCIONES</th>
         </tr>
 
       </tfoot>
