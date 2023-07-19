@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-07-2023 a las 17:16:56
+-- Tiempo de generación: 20-07-2023 a las 01:27:02
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -35,6 +35,15 @@ INNER JOIN gendertype GT ON US.GenderType_id=GT.GenderType_id
 INNER JOIN document_type DT ON US.DocumentType_id=DT.DocumentType_id;
 END$$
 
+DROP PROCEDURE IF EXISTS `sp_select_user_id`$$
+CREATE PROCEDURE `sp_select_user_id` (IN `userId` INT)   BEGIN
+SELECT User_id,User_name,User_lastName,DT.DocumentType_name,User_document,User_email,User_cellphone,User_password,GT.GenderType_name,User_birthdate,ST.Status_name,DT.DocumentType_id,GT.GenderType_id,ST.Status_id FROM user US 
+INNER JOIN status ST ON US.Status_id=ST.Status_id
+INNER JOIN gendertype GT ON US.GenderType_id=GT.GenderType_id
+INNER JOIN document_type DT ON US.DocumentType_id=DT.DocumentType_id
+WHERE User_id=userId;
+END$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -49,14 +58,15 @@ CREATE TABLE IF NOT EXISTS `document_type` (
   `DocumentType_name` varchar(60) NOT NULL,
   `DocumentType_descriptions` varchar(80) NOT NULL,
   PRIMARY KEY (`DocumentType_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `document_type`
 --
 
 INSERT INTO `document_type` (`DocumentType_id`, `DocumentType_name`, `DocumentType_descriptions`) VALUES
-(1, 'CC', 'Cedula');
+(1, 'CC', 'Cedula'),
+(2, 'TI', 'Tarjeta de Identidad ');
 
 -- --------------------------------------------------------
 
@@ -150,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   KEY `user_document_type` (`DocumentType_id`),
   KEY `user_gender_type` (`GenderType_id`),
   KEY `user_status_type` (`Status_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `user`
