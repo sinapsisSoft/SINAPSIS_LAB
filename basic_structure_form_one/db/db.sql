@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-07-2023 a las 18:12:11
+-- Tiempo de generación: 19-07-2023 a las 17:16:56
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -28,7 +28,7 @@ DELIMITER $$
 -- Procedimientos
 --
 DROP PROCEDURE IF EXISTS `sp_select_all_user`$$
-CREATE  PROCEDURE `sp_select_all_user` ()   BEGIN
+CREATE PROCEDURE `sp_select_all_user` ()   BEGIN
 SELECT User_id,User_name,User_lastName,DT.DocumentType_name,User_document,User_email,User_cellphone,User_password,GT.GenderType_name,User_birthdate,ST.Status_name FROM user US 
 INNER JOIN status ST ON US.Status_id=ST.Status_id
 INNER JOIN gendertype GT ON US.GenderType_id=GT.GenderType_id
@@ -52,11 +52,6 @@ CREATE TABLE IF NOT EXISTS `document_type` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
--- Truncar tablas antes de insertar `document_type`
---
-
-TRUNCATE TABLE `document_type`;
---
 -- Volcado de datos para la tabla `document_type`
 --
 
@@ -77,11 +72,6 @@ CREATE TABLE IF NOT EXISTS `gendertype` (
   PRIMARY KEY (`GenderType_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
---
--- Truncar tablas antes de insertar `gendertype`
---
-
-TRUNCATE TABLE `gendertype`;
 --
 -- Volcado de datos para la tabla `gendertype`
 --
@@ -111,11 +101,6 @@ CREATE TABLE IF NOT EXISTS `profile` (
   PRIMARY KEY (`Profile_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Truncar tablas antes de insertar `profile`
---
-
-TRUNCATE TABLE `profile`;
 -- --------------------------------------------------------
 
 --
@@ -130,11 +115,6 @@ CREATE TABLE IF NOT EXISTS `status` (
   PRIMARY KEY (`Status_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
---
--- Truncar tablas antes de insertar `status`
---
-
-TRUNCATE TABLE `status`;
 --
 -- Volcado de datos para la tabla `status`
 --
@@ -153,13 +133,14 @@ INSERT INTO `status` (`Status_id`, `Status_name`, `Status_descriptions`) VALUES
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `User_id` int(11) NOT NULL,
+  `User_id` int(11) NOT NULL AUTO_INCREMENT,
   `User_name` varchar(60) NOT NULL,
   `User_document` varchar(20) NOT NULL,
   `User_email` varchar(100) NOT NULL,
   `User_cellphone` int(11) NOT NULL,
   `User_lastName` varchar(60) NOT NULL,
   `User_password` varchar(80) NOT NULL,
+  `User_user` varchar(60) NOT NULL,
   `User_birthdate` date NOT NULL DEFAULT current_timestamp(),
   `Status_id` int(11) NOT NULL,
   `DocumentType_id` int(11) NOT NULL,
@@ -169,19 +150,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   KEY `user_document_type` (`DocumentType_id`),
   KEY `user_gender_type` (`GenderType_id`),
   KEY `user_status_type` (`Status_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
---
--- Truncar tablas antes de insertar `user`
---
-
-TRUNCATE TABLE `user`;
 --
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`User_id`, `User_name`, `User_document`, `User_email`, `User_cellphone`, `User_lastName`, `User_password`, `User_birthdate`, `Status_id`, `DocumentType_id`, `GenderType_id`) VALUES
-(0, 'Juan Camilo', '12300998877', '', 301234567, 'Urrego ', '123456', '2000-07-04', 1, 1, 1);
+INSERT INTO `user` (`User_id`, `User_name`, `User_document`, `User_email`, `User_cellphone`, `User_lastName`, `User_password`, `User_user`, `User_birthdate`, `Status_id`, `DocumentType_id`, `GenderType_id`) VALUES
+(1, 'Diego', '8085968741', 'dieher@gmail.com', 2147483647, 'casallas', '$2y$10$xygrNJddUR195kIapJ/1GeMaI6vQAT1PTctbEvVOsLBQzvxMsw5ZW', 'diehercas@gmail.com', '2023-07-19', 1, 1, 2);
 
 --
 -- Restricciones para tablas volcadas

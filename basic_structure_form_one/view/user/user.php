@@ -3,9 +3,10 @@ include("../../config/config.php");
 
 
 $sql = "CALL sp_select_all_user(); ";
-$sql.= "SELECT * FROM `document_type` WHERE 1;";
-$sql.= "SELECT * FROM `gendertype` WHERE 1;";
-$resultArray=array();
+$sql .= "SELECT * FROM `document_type` WHERE 1;";
+$sql .= "SELECT * FROM `gendertype` WHERE 1;";
+$sql .= "SELECT * FROM `status` WHERE 1;";
+$resultArray = array();
 if (!$connect->multi_query($sql)) {
   echo "Falló la multiconsulta: (" . $connect->errno . ") " . $connect->error;
 }
@@ -13,16 +14,17 @@ if (!$connect->multi_query($sql)) {
 do {
   if ($resultado = $connect->store_result()) {
 
-  
-      $result = $resultado->fetch_all(MYSQLI_NUM);
-      array_push($resultArray,$result);
 
-      $resultado->free();
+    $result = $resultado->fetch_all(MYSQLI_NUM);
+    array_push($resultArray, $result);
+
+    $resultado->free();
   }
 } while ($connect->more_results() && $connect->next_result());
-$resultUser=$resultArray[0];
-$resultDocumentType=$resultArray[1];
-$resultGenderType=$resultArray[2];
+$resultUser = $resultArray[0];
+$resultDocumentType = $resultArray[1];
+$resultGenderType = $resultArray[2];
+$resultStatus = $resultArray[3];
 
 ?>
 <!-- 
@@ -66,11 +68,16 @@ $resultGenderType=$resultArray[2];
     <!--Formulario form - name => permite a un script acceder a su contenido <input>-->
     <!--Formulario form - id => permite a un script o al css acceder a su contenido <form>-->
     <!--Formulario form - class => permite a una clase de css acceder a su contenido <form>-->
-    <form name="formUser" id="formUser" class="formUser">
+    <form name="formUser" method="GET" action="../../controller/user/insert.php" id="formUser" class="formUser">
       <!--Inicio de tabla para los contenidos del formulario - etiqueta de tabla <table>-->
       <!--Etiqueta table - name => permite a un script acceder a su contenido <table>-->
       <!--Etiqueta table - id => permite a un script o al css acceder a su contenido <div>-->
       <!--Etiqueta table - class => permite a una clase de css acceder a su contenido <div>-->
+      <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
+      <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
+      <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
+      <!--Caja de texto etiqueta input - type => hidden campo oculto en el html<input>-->
+      <input type="hidden" value="" id="User_id" name="User_id" />
       <table name="tableUser" id="tableUser" class="tableUser">
         <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
         <tr>
@@ -83,7 +90,7 @@ $resultGenderType=$resultArray[2];
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="text" value="" placeholder="Digitar Nombre" id="name" name="name" required />
+            <input type="text" value="" placeholder="Digitar Nombre" id="User_name" name="User_name" required />
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
 
@@ -96,49 +103,28 @@ $resultGenderType=$resultArray[2];
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="text" value="" placeholder="Digitar Apellido" id="lastName" name="lastName" required />
+            <input type="text" value="" placeholder="Digitar Apellido" id="User_lastName" name="User_lastName" required />
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
           <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
           <td>
-            <!--La etiqueta select (<select>) de HTML representa un control que muestra un menú de opciones-->
-            <!--Inicio de la lista <select>-->
-            <!--lista de selección select - required => indica que la caja de texto es requerida (obligatoria) <select>-->
-            <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
-            <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
-            <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
-            <select name="typeDocument" id="typeDocument" required>
-              <!--Inicio de etiqueta de opciones de lista <option>-->
-              <!--Valor de la opción - value => valor de la opción <option>-->
-              <?php 
-              for ($i = 0; $i < count($resultDocumentType); $i++) {
-                echo'<option value="'.$resultDocumentType[$i][0].'">'.$resultDocumentType[$i][1].'</option>';
-              };
-   
-              ?>
-              
-            </select>
-            <!--Cierre de la lista <select>-->
+            <!--Caja de texto etiqueta input - type => tipo texto <input>-->
+            <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
+            <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
+            <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
+            <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
+            <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
+            <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
+            <input type="number" value="" placeholder="Digitar Documento" id="User_document" name="User_document" required />
 
           </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+
         </tr>
         <!--Cierre de fila para de la tabla - etiqueta de fila <tr>-->
 
         <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
         <tr>
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--Caja de texto etiqueta input - type => tipo texto <input>-->
-            <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
-            <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
-            <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
-            <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="number" value="" placeholder="Digitar Documento" id="document" name="document" required />
 
-          </td>
           <td>
             <!--Caja de texto etiqueta input - type => tipo email <input>-->
             <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
@@ -147,7 +133,7 @@ $resultGenderType=$resultArray[2];
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="email" value="" placeholder="Digitar Correo Electrónico" id="email" name="email" required />
+            <input type="email" value="" placeholder="Digitar Correo Electrónico" id="User_email" name="User_email" required />
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
 
@@ -160,50 +146,7 @@ $resultGenderType=$resultArray[2];
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="text" value="" placeholder="Digitar Dirección" id="address" name="address" required />
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
-
-
-        </tr>
-        <!--Cierre de fila para de la tabla - etiqueta de fila <tr>-->
-
-        <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
-        <tr>
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--Caja de texto etiqueta input - type => tipo numero <input>-->
-            <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
-            <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
-            <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
-            <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="number" value="" placeholder="Digitar Celular" id="cellphone" name="cellphone" required />
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
-
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--La etiqueta select (<select>) de HTML representa un control que muestra un menú de opciones-->
-            <!--Inicio de la lista <select>-->
-            <!--lista de selección select - required => indica que la caja de texto es requerida (obligatoria) <select>-->
-            <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
-            <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
-            <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
-            <select name="typeGender" id="typeGender" required>
-              <!--Inicio de etiqueta de opciones de lista <option>-->
-              <!--Valor de la opción - value => valor de la opción <option>-->
-              <?php 
-              for ($i = 0; $i < count($resultGenderType); $i++) {
-                echo'<option value="'.$resultGenderType[$i][0].'">'.$resultGenderType[$i][1].'</option>';
-              };
-   
-              ?>
-           
-              <!--Cierre de etiqueta de opciones de lista <option>-->
-            </select>
-            <!--Cierre de la lista <select>-->
+            <input type="number" value="" placeholder="Digitar Número de Celular" id="User_cellphone" name="User_cellphone" required />
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
           <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
@@ -216,6 +159,78 @@ $resultGenderType=$resultArray[2];
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
             <input type="date" value="" placeholder="Fecha de Nacimiento" id="birthdate" name="birthdate" required />
+          </td>
+          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+
+        </tr>
+        <!--Cierre de fila para de la tabla - etiqueta de fila <tr>-->
+
+        <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
+        <tr>
+          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
+          <td>
+            <!--La etiqueta select (<select>) de HTML representa un control que muestra un menú de opciones-->
+            <!--Inicio de la lista <select>-->
+            <!--lista de selección select - required => indica que la caja de texto es requerida (obligatoria) <select>-->
+            <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
+            <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
+            <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
+            <select name="DocumentType_id" id="DocumentType_id" required>
+              <!--Inicio de etiqueta de opciones de lista <option>-->
+              <!--Valor de la opción - value => valor de la opción <option>-->
+              <?php
+              for ($i = 0; $i < count($resultDocumentType); $i++) {
+                echo '<option value="' . $resultDocumentType[$i][0] . '">' . $resultDocumentType[$i][1] . '</option>';
+              };
+              ?>
+            </select>
+            <!--Cierre de la lista <select>-->
+          </td>
+          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+
+          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
+          <td>
+            <!--La etiqueta select (<select>) de HTML representa un control que muestra un menú de opciones-->
+            <!--Inicio de la lista <select>-->
+            <!--lista de selección select - required => indica que la caja de texto es requerida (obligatoria) <select>-->
+            <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
+            <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
+            <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
+            <select name="GenderType_id" id="GenderType_id" required>
+              <!--Inicio de etiqueta de opciones de lista <option>-->
+              <!--Valor de la opción - value => valor de la opción <option>-->
+              <?php
+              for ($i = 0; $i < count($resultGenderType); $i++) {
+                echo '<option value="' . $resultGenderType[$i][0] . '">' . $resultGenderType[$i][1] . '</option>';
+              };
+
+              ?>
+
+              <!--Cierre de etiqueta de opciones de lista <option>-->
+            </select>
+            <!--Cierre de la lista <select>-->
+          </td>
+          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+
+          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
+          <td>
+            <!--La etiqueta select (<select>) de HTML representa un control que muestra un menú de opciones-->
+            <!--Inicio de la lista <select>-->
+            <!--lista de selección select - required => indica que la caja de texto es requerida (obligatoria) <select>-->
+            <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
+            <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
+            <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
+            <select name="Status_id" id="Status_id" required>
+              <!--Inicio de etiqueta de opciones de lista <option>-->
+              <!--Valor de la opción - value => valor de la opción <option>-->
+              <?php
+              for ($i = 0; $i < count($resultStatus); $i++) {
+                echo '<option value="' . $resultStatus[$i][0] . '">' . $resultStatus[$i][1] . '</option>';
+              };
+              ?>
+            </select>
+            <!--Cierre de la lista <select>-->
+
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
         </tr>
@@ -254,7 +269,7 @@ $resultGenderType=$resultArray[2];
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="email" value="" placeholder="Digitar Usuario" id="user" name="user" required />
+            <input type="email" value="" placeholder="Digitar Usuario" id="User_user" name="User_user" required />
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
           <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
@@ -266,7 +281,7 @@ $resultGenderType=$resultArray[2];
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="password" value="" placeholder="Digitar Contraseña" id="password" name="password" required />
+            <input type="password" value="" placeholder="Digitar Contraseña" id="User_password" name="User_password" required />
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
 
@@ -319,7 +334,7 @@ $resultGenderType=$resultArray[2];
               <select name="typeSearch" id="typeSearch" required>
                 <!--Inicio de etiqueta de opciones de lista <option>-->
                 <!--Valor de la opción - value => valor de la opción <option>-->
-                  
+
                 <option value="0">DOCUMENTO</option>
                 <!--Cierre de etiqueta de opciones de lista <option>-->
                 <!--Inicio de etiqueta de opciones de lista <option>-->
@@ -378,7 +393,7 @@ $resultGenderType=$resultArray[2];
 
       <tbody>
         <?php
-        $rowUser=$resultUser;
+        $rowUser = $resultUser;
         for ($i = 0; $i < count($rowUser); $i++) {
           echo '<tr class="checkTr">';
           echo '<td>' . ($i + 1) . '</td>';
@@ -400,7 +415,7 @@ $resultGenderType=$resultArray[2];
           </td>
         </tr>';
         };
-     
+
         $connect->close();
         ?>
       </tbody>
