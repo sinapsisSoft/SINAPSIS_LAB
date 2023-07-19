@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     <!--Formulario form - name => permite a un script acceder a su contenido <input>-->
     <!--Formulario form - id => permite a un script o al css acceder a su contenido <form>-->
     <!--Formulario form - class => permite a una clase de css acceder a su contenido <form>-->
-    <form name="formUser" method="GET" action="../../controller/user/insert.php" id="formUser" class="formUser">
+    <form name="formUser" method="GET" action="" id="formUser" class="formUser">
       <!--Inicio de tabla para los contenidos del formulario - etiqueta de tabla <table>-->
       <!--Etiqueta table - name => permite a un script acceder a su contenido <table>-->
       <!--Etiqueta table - id => permite a un script o al css acceder a su contenido <div>-->
