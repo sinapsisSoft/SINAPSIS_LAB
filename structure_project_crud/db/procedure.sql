@@ -24,5 +24,20 @@ INNER JOIN document_type DT ON US.DocumentType_id=DT.DocumentType_id
 WHERE User_id=userId;
 END$$
 
+DELIMITER $$
+DROP PROCEDURE IF EXISTS sp_select_all_client$$
+CREATE PROCEDURE sp_select_all_client() BEGIN
+SELECT  Client_id,Client_name,Client_identification,Client_email,Client_phone,Client_address,DT.DocumentType_id,ST.Status_id,ST.Status_name, DT.DocumentType_name FROM client CLI
+INNER JOIN status ST ON CLI.Status_id=ST.Status_id
+INNER JOIN document_type DT ON CLI.DocumentType_id=DT.DocumentType_id;
+END$$ 
+
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS `sp_select_client_id`$$
+CREATE PROCEDURE `sp_select_client_id`(IN clientId INT) BEGIN
+SELECT * FROM client WHERE Client_id=clientId;
+END$$
+
 
 

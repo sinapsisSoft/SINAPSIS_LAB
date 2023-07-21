@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-07-2023 a las 13:38:07
+-- Tiempo de generación: 21-07-2023 a las 23:59:30
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -27,6 +27,14 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+DROP PROCEDURE IF EXISTS `sp_select_all_client`$$
+CREATE PROCEDURE `sp_select_all_client` ()   BEGIN
+SELECT  Client_id,Client_name,Client_identification,Client_email,Client_phone,Client_address,DT.DocumentType_id,ST.Status_id,ST.Status_name, DT.DocumentType_name FROM client CLI
+INNER JOIN status ST ON CLI.Status_id=ST.Status_id
+INNER JOIN document_type DT ON CLI.DocumentType_id=DT.DocumentType_id;
+END$$
+
+DROP PROCEDURE IF EXISTS `sp_select_all_user`$$
 CREATE PROCEDURE `sp_select_all_user` ()   BEGIN
 SELECT User_id,User_name,User_lastName,DT.DocumentType_name,User_document,User_email,User_cellphone,User_password,GT.GenderType_name,User_birthdate,ST.Status_name FROM user US 
 INNER JOIN status ST ON US.Status_id=ST.Status_id
@@ -34,6 +42,12 @@ INNER JOIN gendertype GT ON US.GenderType_id=GT.GenderType_id
 INNER JOIN document_type DT ON US.DocumentType_id=DT.DocumentType_id;
 END$$
 
+DROP PROCEDURE IF EXISTS `sp_select_client_id`$$
+CREATE PROCEDURE `sp_select_client_id` (IN `clientId` INT)   BEGIN
+SELECT * FROM client WHERE Client_id=clientId;
+END$$
+
+DROP PROCEDURE IF EXISTS `sp_select_user_id`$$
 CREATE PROCEDURE `sp_select_user_id` (IN `userId` INT)   BEGIN
 SELECT User_id,User_name,User_lastName,DT.DocumentType_name,User_document,User_email,User_cellphone,User_password,GT.GenderType_name,User_birthdate,ST.Status_name,DT.DocumentType_id,GT.GenderType_id,ST.Status_id,User_user FROM user US 
 INNER JOIN status ST ON US.Status_id=ST.Status_id
@@ -47,15 +61,56 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `client`
+--
+
+DROP TABLE IF EXISTS `client`;
+CREATE TABLE IF NOT EXISTS `client` (
+  `Client_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `Client_name` varchar(100) NOT NULL,
+  `Client_identification` varchar(20) NOT NULL,
+  `Client_email` varchar(100) NOT NULL,
+  `Client_phone` varchar(10) NOT NULL,
+  `Client_address` varchar(100) NOT NULL,
+  `DocumentType_id` int(10) NOT NULL,
+  `Comp_id` int(10) NOT NULL,
+  `Status_id` int(10) NOT NULL,
+  `Country_id` int(10) NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`Client_id`),
+  UNIQUE KEY `Client_identification` (`Client_identification`),
+  UNIQUE KEY `Client_email` (`Client_email`),
+  KEY `client_document_type` (`DocumentType_id`),
+  KEY `client_status` (`Status_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+--
+-- Truncar tablas antes de insertar `client`
+--
+
+TRUNCATE TABLE `client`;
+--
+-- Volcado de datos para la tabla `client`
+--
+
+INSERT INTO `client` (`Client_id`, `Client_name`, `Client_identification`, `Client_email`, `Client_phone`, `Client_address`, `DocumentType_id`, `Comp_id`, `Status_id`, `Country_id`, `updated_at`, `created_at`) VALUES
+(21, 'Sinapsis ', '901261786', 'info@sinapsist.com.co', '2504567', 'Calle falsa 1234', 3, 0, 2, 0, NULL, '2023-07-21 16:47:34'),
+(22, 'Empresa ', '12345678', 'empresa@gmail.com', '12345678', 'callle ', 2, 0, 3, 0, NULL, '2023-07-21 16:50:06');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `document_type`
 --
 
+DROP TABLE IF EXISTS `document_type`;
 CREATE TABLE IF NOT EXISTS `document_type` (
   `DocumentType_id` int(11) NOT NULL AUTO_INCREMENT,
   `DocumentType_name` varchar(60) NOT NULL,
   `DocumentType_descriptions` varchar(80) NOT NULL,
   PRIMARY KEY (`DocumentType_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Truncar tablas antes de insertar `document_type`
@@ -68,7 +123,9 @@ TRUNCATE TABLE `document_type`;
 
 INSERT INTO `document_type` (`DocumentType_id`, `DocumentType_name`, `DocumentType_descriptions`) VALUES
 (1, 'CC', 'Cedula'),
-(2, 'TI', 'Tarjeta de Identidad ');
+(2, 'TI', 'Tarjeta de Identidad '),
+(3, 'RC', 'REGISTRO CIVIL'),
+(4, 'CE', 'CÉDULA DE EXTRANJERIA');
 
 -- --------------------------------------------------------
 
@@ -76,6 +133,7 @@ INSERT INTO `document_type` (`DocumentType_id`, `DocumentType_name`, `DocumentTy
 -- Estructura de tabla para la tabla `gendertype`
 --
 
+DROP TABLE IF EXISTS `gendertype`;
 CREATE TABLE IF NOT EXISTS `gendertype` (
   `GenderType_id` int(11) NOT NULL AUTO_INCREMENT,
   `GenderType_name` varchar(60) NOT NULL,
@@ -102,6 +160,7 @@ INSERT INTO `gendertype` (`GenderType_id`, `GenderType_name`, `GenderType_descri
 -- Estructura de tabla para la tabla `profile`
 --
 
+DROP TABLE IF EXISTS `profile`;
 CREATE TABLE IF NOT EXISTS `profile` (
   `Profile_id` int(11) NOT NULL AUTO_INCREMENT,
   `Profile_name` varchar(60) NOT NULL,
@@ -127,6 +186,7 @@ TRUNCATE TABLE `profile`;
 -- Estructura de tabla para la tabla `status`
 --
 
+DROP TABLE IF EXISTS `status`;
 CREATE TABLE IF NOT EXISTS `status` (
   `Status_id` int(11) NOT NULL AUTO_INCREMENT,
   `Status_name` varchar(60) NOT NULL,
@@ -155,6 +215,7 @@ INSERT INTO `status` (`Status_id`, `Status_name`, `Status_descriptions`) VALUES
 -- Estructura de tabla para la tabla `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `User_id` int(11) NOT NULL AUTO_INCREMENT,
   `User_name` varchar(60) NOT NULL,
@@ -192,6 +253,13 @@ INSERT INTO `user` (`User_id`, `User_name`, `User_document`, `User_email`, `User
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `client`
+--
+ALTER TABLE `client`
+  ADD CONSTRAINT `client_document_type` FOREIGN KEY (`DocumentType_id`) REFERENCES `document_type` (`DocumentType_id`),
+  ADD CONSTRAINT `client_status` FOREIGN KEY (`Status_id`) REFERENCES `status` (`Status_id`);
 
 --
 -- Filtros para la tabla `user`
