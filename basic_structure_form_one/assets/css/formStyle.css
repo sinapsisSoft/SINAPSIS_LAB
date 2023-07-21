@@ -159,9 +159,23 @@ cursor: pointer;
 .btnsActions button:hover{
   border: none;
   border-radius: 20px;
+  background: #f0f0f0;
+  border: solid 1px #31d2f2;
 }
-.btnUpdate{
-  background: yellow;
+.btnSuccess{
+  background: #198754;
+}
+.btnPrimary{
+  background: #0b5ed7;
+}
+.btnInfo{
+  background: #31d2f2;
+}
+.btnDanger{
+  background: #bb2d3b;;
+}
+.btnWarning{
+  background: #ffca2c;
 }
 .btnView{
   background: orange;
@@ -169,5 +183,18 @@ cursor: pointer;
 .btnDelete{
   background: red;
 }
+.iconsIndex{
+  width: 150px;
+  border: solid;
+  text-align: center;
+  cursor: pointer;
 
+}
+.iconsIndex:hover{
+  width: 150px;
+  border-radius:5px;
+  background: #31d2f2;
+  color: white;
+
+}
   

@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
   $userDocument = $_REQUEST['User_document'];
   $userEmail = $_REQUEST['User_email'];
   $userCellphone = $_REQUEST['User_cellphone'];
+  $userBirthdate = $_REQUEST['User_birthdate'];
 
   $userUser = $_REQUEST['User_user'];
   $userPassword =password_hash($_REQUEST['User_password'], PASSWORD_DEFAULT) ;
@@ -30,16 +31,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
   User_document,
   User_email,
   User_cellphone,
+  User_birthdate,
   User_user,
   User_password,
   Status_id,
   DocumentType_id,
   GenderType_id) VALUES 
-  (?,?,?,?,?,?,?,?,?,?)");
-  $stmt->bind_param("ssssissiii",$userName,$userLastName,$userDocument,$userEmail,$userCellphone,$userUser,$userPassword,$statusId,$documentTypeId,$genderTypeId);
+  (?,?,?,?,?,?,?,?,?,?,?)");
+  $stmt->bind_param("ssssssssiii",$userName,$userLastName,$userDocument,$userEmail,$userCellphone,  $userBirthdate,$userUser,$userPassword,$statusId,$documentTypeId,$genderTypeId);
 
   $stmt->execute();
   echo "New records created successfully";
   $stmt->close();
   $connect->close();
+  header('Location: ../../view/user/view.php');
+  exit;
 }

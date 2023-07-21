@@ -68,13 +68,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
   <!--Etiqueta div - class => permite a una clase de css acceder a su contenido <div>-->
   <div id="sectionOne" class="sectionOne" name="sectionOne">
     <!--Etiqueta h2 de titulo <h2>-->
-    <h2>ACTUALIZAR USUARIOS</h2>
+    <h2>INFORMACIÓN DEL USUARIO</h2>
 
     <!--Inicio de formulario - etiqueta de formulario <form>-->
     <!--Formulario form - name => permite a un script acceder a su contenido <input>-->
     <!--Formulario form - id => permite a un script o al css acceder a su contenido <form>-->
     <!--Formulario form - class => permite a una clase de css acceder a su contenido <form>-->
-    <form name="formUser" method="GET" action="../../controller/user/update.php" id="formUser" class="formUser">
+    <form name="formUser" method="GET" action="" id="formUser" class="formUser">
       <!--Inicio de tabla para los contenidos del formulario - etiqueta de tabla <table>-->
       <!--Etiqueta table - name => permite a un script acceder a su contenido <table>-->
       <!--Etiqueta table - id => permite a un script o al css acceder a su contenido <div>-->
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
       <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
       <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
       <!--Caja de texto etiqueta input - type => hidden campo oculto en el html<input>-->
-      <input type="hidden" value="<?= $resultUser[0][0] ?>" id="User_id" name="User_id" />
+      <input type="hidden" value="<?= $resultUser[0][0] ?>" id="User_id" name="User_id" disabled/>
       <table name="tableUser" id="tableUser" class="tableUser">
         <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
         <tr>
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="text" value="<?= $resultUser[0][1] ?>" placeholder="Digitar Nombre" id="User_name" name="User_name" required />
+            <input type="text" value="<?= $resultUser[0][1] ?>" placeholder="Digitar Nombre" id="User_name" name="User_name" required disabled/>
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
 
@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="text" value="<?= $resultUser[0][2] ?>" placeholder="Digitar Apellido" id="User_lastName" name="User_lastName" required />
+            <input type="text" value="<?= $resultUser[0][2] ?>" placeholder="Digitar Apellido" id="User_lastName" name="User_lastName" required disabled/>
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
           <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
@@ -121,8 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-       
-            <input type="number" value="<?= $resultUser[0][4] ?>" placeholder="Digitar Documento" id="User_document" name="User_document" required/>
+            <input type="number" value="<?= $resultUser[0][4] ?>" placeholder="Digitar Documento" id="User_document" name="User_document" required disabled />
 
           </td>
 
@@ -140,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="email" value="<?= $resultUser[0][5] ?>" placeholder="Digitar Correo Electrónico" id="User_email" name="User_email" required />
+            <input type="email" value="<?= $resultUser[0][5] ?>" placeholder="Digitar Correo Electrónico" id="User_email" name="User_email" required disabled/>
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
 
@@ -153,7 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="number" value="<?= $resultUser[0][6]?>" placeholder="Digitar Número de Celular" id="User_cellphone" name="User_cellphone" required />
+            <input type="number" value="<?= $resultUser[0][6] ?>" placeholder="Digitar Número de Celular" id="User_cellphone" name="User_cellphone" required disabled/>
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
           <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
@@ -165,7 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="date" value="<?= $resultUser[0][9] ?>" placeholder="Fecha de Nacimiento" id="User_birthdate" name="User_birthdate" required />
+            <input type="date" value="<?= $resultUser[0][9] ?>" placeholder="Fecha de Nacimiento" id="birthdate" name="birthdate" required disabled/>
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
 
@@ -182,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
             <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
             <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
-            <select name="DocumentType_id" id="DocumentType_id" required>
+            <select name="DocumentType_id" id="DocumentType_id" required disabled>
               <!--Inicio de etiqueta de opciones de lista <option>-->
               <!--Valor de la opción - value => valor de la opción <option>-->
               <?php
@@ -208,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
             <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
             <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
-            <select name="GenderType_id" id="GenderType_id" required>
+            <select name="GenderType_id" id="GenderType_id" required disabled>
               <!--Inicio de etiqueta de opciones de lista <option>-->
               <!--Valor de la opción - value => valor de la opción <option>-->
               <?php
@@ -238,7 +237,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
             <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
             <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
-            <select name="Status_id" id="Status_id" required>
+            <select name="Status_id" id="Status_id" required disabled>
               <!--Inicio de etiqueta de opciones de lista <option>-->
               <!--Valor de la opción - value => valor de la opción <option>-->
               <?php
@@ -270,8 +269,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
             <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <button type="submit" value="" id="btnSubmit" name="btnSubmit" class="btnSubmit"><img src="../../assets/img/icons/edit.png">
-            </button>
+          
 
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
