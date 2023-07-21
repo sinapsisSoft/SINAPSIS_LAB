@@ -1,0 +1,182 @@
+/*
+Author:DIEGO CASALLAS
+Date:12/06/2023
+Descriptions:This css 
+*/
+
+/*Estilo general*/
+
+
+/*Estilo aplicado al html y body*/
+html,body{
+  width: auto;
+  height: 100%;
+  text-transform:uppercase ;
+}
+/*Estilo aplicado a todos los input*/
+
+input{
+  text-transform:uppercase ;
+  border-radius: 5px;
+  width: 95%;
+  margin: auto;
+  padding: 2px;
+}
+input:focus{
+  background: rgb(99, 151, 229);
+  color: white;
+}
+input:hover{
+  background: rgb(99, 151, 229);
+  color: white;
+  cursor: pointer;
+}
+/*Estilo aplicado a todos los input de tipo text*/
+
+input[type=text]{
+
+}
+/*Estilo aplicado a todos los input de tipo email*/
+
+input[type=email]{
+    
+}
+input[type=color]{
+    width: 40%;
+    margin-top: 5px;
+    border: none;
+
+}
+input[type=time]{
+  width: 40%;
+  padding-block: 6px;
+
+}
+/*Estilo aplicado a todos los select*/
+
+select{
+  border-radius: 5px;
+  width:97%;
+  margin: auto;
+}
+
+select:focus{
+  background: rgb(99, 151, 229);
+  color: white;
+}
+
+/*Clase primera sección*/
+.sectionOne{
+  background: rgb(209, 209, 209);
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+}
+.sectionTwo{
+  background: white;
+  width: 95%;
+  margin: auto;
+  padding: 10px;
+}
+.tableUser{
+  background: transparent;
+  width: 100%;
+  margin: auto;
+}
+.tableViewUser{
+  width: 100%;
+  background: transparent;
+  padding-top: 20px;
+
+}
+.tableViewUser th{
+  border: solid 1px #f0f0f0;
+  background: blue;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  
+}
+tfoot td{
+  border: solid 1px #f0f0f0;
+  background: blue;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  
+}
+.checkTr{
+ 
+  background-color: white;
+  cursor: pointer;
+  font-size: small;
+  color: gray;
+  
+}
+.checkTr:hover{
+  background-color: gray;
+  color: white;
+  
+}
+
+.tableViewUser td{
+  border: solid 1px #f0f0f0;
+  
+}
+.tableViewUserSearch{
+  background: blueviolet;
+  width: 50%;
+  margin: auto;
+  padding: 10px;
+}
+.tableViewUserSearch img{
+width: 30px;
+text-align: center;
+cursor: pointer;
+}
+.tableViewUserSearch select{
+  height:40px;
+}
+.tableViewUserSearch input{
+  height:40px;
+}
+.btnSubmit{
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  text-align: center;
+  border: 0px;
+  cursor: pointer;
+  position: absolute;
+  right: 5%;
+  background: whitesmoke;
+  box-shadow: 0px 3px 3px rgb(67, 66, 66);
+}
+.btnViewPassword{
+  background: rgb(91, 173, 245);
+  width: 40px;
+  text-align: center;
+  cursor: pointer;
+  padding: 2px;
+}
+.btnsActions img{
+  width: 20px;
+  cursor: pointer;
+ 
+
+}
+.btnsActions button:hover{
+  border: none;
+  border-radius: 20px;
+}
+.btnUpdate{
+  background: yellow;
+}
+.btnView{
+  background: orange;
+}
+.btnDelete{
+  background: red;
+}
+
+  

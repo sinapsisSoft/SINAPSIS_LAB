@@ -1,0 +1,36 @@
+/*
+Author:DIEGO CASALLAS
+Date:13/06/2023
+Descriptions:This css 
+*/
+
+.sectionOne{
+  width: 50%;
+ 
+}
+.sectionOne h1{
+text-align: center;
+ 
+}
+.tableLogin{
+  width: 90%;
+  margin: auto;
+  background: transparent;
+
+}
+.tableLogin input{
+  width: 100%;
+  margin: auto;
+}
+.img-logo{
+  width: 40%;
+  
+}
+.btnGetInto{
+  background: green;
+  color: white;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+
+}
