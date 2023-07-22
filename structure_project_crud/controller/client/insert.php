@@ -17,8 +17,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
   $clientAddress = $_REQUEST['Client_address'];
 
 
+
   $statusId = $_REQUEST['Status_id'];
   $documentTypeId = $_REQUEST['DocumentType_id'];
+  $compId = $_REQUEST['Comp_id'];
+  $countryId  = $_REQUEST['Country_id'];
 
 
   //Prepare and bind insert mysql 
@@ -29,9 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
   Client_phone,
   Client_address,
   Status_id,
-  DocumentType_id) VALUES 
-  (?,?,?,?,?,?,?)");
-  $stmt->bind_param("sssssii",$clientName,$clientIdentification,$clientEmail,$clientPhone,$clientAddress,  $statusId,$documentTypeId);
+  DocumentType_id,
+  Comp_id,
+  Country_id) VALUES 
+  (?,?,?,?,?,?,?,?,?)");
+  $stmt->bind_param("sssssiiii",$clientName,$clientIdentification,$clientEmail,$clientPhone,$clientAddress,  $statusId,$documentTypeId,$compId,$countryId);
 
   $stmt->execute();
   echo "New records created successfully";

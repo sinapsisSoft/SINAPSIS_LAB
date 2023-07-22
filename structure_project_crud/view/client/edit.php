@@ -6,6 +6,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
   $sql = "CALL sp_select_client_id(" . $userId . "); ";
   $sql .= "SELECT * FROM `document_type` WHERE 1;";
   $sql .= "SELECT * FROM `status` WHERE 1;";
+  $sql .= "SELECT * FROM `country` WHERE 1;";
+  $sql .= "SELECT * FROM `company` WHERE 1;";
   $resultArray = array();
   if (!$connect->multi_query($sql)) {
     echo "Falló la multiconsulta: (" . $connect->errno . ") " . $connect->error;
@@ -24,6 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
   $resultClient = $resultArray[0];
   $resultDocumentType = $resultArray[1];
   $resultStatus = $resultArray[2];
+  $resultCountry = $resultArray[3];
+  $resultCompany = $resultArray[4];
 
 }
 ?>
@@ -123,8 +127,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
         <tr>
 
-          
-
           <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
           <td>
             <!--Caja de texto etiqueta input - type => tipo texto <input>-->
@@ -208,7 +210,58 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             <!--Cierre de la lista <select>-->
           </td>
           <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
-          
+          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
+          <td>
+            <!--La etiqueta select (<select>) de HTML representa un control que muestra un menú de opciones-->
+            <!--Inicio de la lista <select>-->
+            <!--lista de selección select - required => indica que la caja de texto es requerida (obligatoria) <select>-->
+            <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
+            <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
+            <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
+            <select name="Comp_id" id="Comp_id" required >
+              <!--Inicio de etiqueta de opciones de lista <option>-->
+              <!--Valor de la opción - value => valor de la opción <option>-->
+              <?php
+              for ($i = 0; $i < count($resultCompany); $i++) {
+
+                if ($resultClient[0][8] == $resultCompany[$i][0]) {
+                  echo '<option value="' . $resultCompany[$i][0] . '" selected="selected">' . $resultCompany[$i][1] . '</option>';
+                } else {
+                  echo '<option value="' . $resultCompany[$i][0] . '">' . $resultCompany[$i][1] . '</option>';
+                }
+              };
+              ?>
+            </select>
+            <!--Cierre de la lista <select>-->
+          </td>
+          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
+          <td>
+            <!--La etiqueta select (<select>) de HTML representa un control que muestra un menú de opciones-->
+            <!--Inicio de la lista <select>-->
+            <!--lista de selección select - required => indica que la caja de texto es requerida (obligatoria) <select>-->
+            <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
+            <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
+            <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
+            <select name="Country_id" id="Country_id" required >
+              <!--Inicio de etiqueta de opciones de lista <option>-->
+              <!--Valor de la opción - value => valor de la opción <option>-->
+              <?php
+              for ($i = 0; $i < count($resultCountry); $i++) {
+
+                if ($resultClient[0][9] == $resultCountry[$i][0]) {
+                  echo '<option value="' . $resultCountry[$i][0] . '" selected="selected">' . $resultCountry[$i][1] . '</option>';
+                } else {
+                  echo '<option value="' . $resultCountry[$i][0] . '">' . $resultCountry[$i][1] . '</option>';
+                }
+              };
+              ?>
+            </select>
+            <!--Cierre de la lista <select>-->
+          </td>
+          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
         </tr>
         <!--Cierre de fila para de la tabla - etiqueta de fila <tr>-->
 

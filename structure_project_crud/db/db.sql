@@ -82,7 +82,9 @@ CREATE TABLE IF NOT EXISTS `client` (
   UNIQUE KEY `Client_identification` (`Client_identification`),
   UNIQUE KEY `Client_email` (`Client_email`),
   KEY `client_document_type` (`DocumentType_id`),
-  KEY `client_status` (`Status_id`)
+  KEY `client_status` (`Status_id`),
+  KEY `client_country` (`Country_id`),
+  KEY `client_company` (`Comp_id`),
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
@@ -258,8 +260,12 @@ INSERT INTO `user` (`User_id`, `User_name`, `User_document`, `User_email`, `User
 -- Filtros para la tabla `client`
 --
 ALTER TABLE `client`
-  ADD CONSTRAINT `client_document_type` FOREIGN KEY (`DocumentType_id`) REFERENCES `document_type` (`DocumentType_id`),
-  ADD CONSTRAINT `client_status` FOREIGN KEY (`Status_id`) REFERENCES `status` (`Status_id`);
+ADD CONSTRAINT `client_document_type` FOREIGN KEY (`DocumentType_id`) REFERENCES `document_type`(`DocumentType_id`),
+ADD CONSTRAINT `client_status` FOREIGN KEY (`Status_id`) REFERENCES `status` (`Status_id`),
+ADD CONSTRAINT `client_country` FOREIGN KEY (`Country_id`) REFERENCES `country` (`Country_id`),
+ADD CONSTRAINT `client_company ` FOREIGN KEY (`Comp_id`) REFERENCES `company` (`Comp_id`);
+
+    
 
 --
 -- Filtros para la tabla `user`
