@@ -44,6 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
   echo "New records created successfully";
   $stmt->close();
   $connect->close();
-  header('Location: ../../view/user/view.php');
+  header('Location: ../../view/user/');
   exit;
 }

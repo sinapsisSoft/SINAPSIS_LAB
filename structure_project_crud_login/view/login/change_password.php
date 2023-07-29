@@ -11,8 +11,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Name of My Form Change Password</title>
   <!--Etiqueta de enlace con los estilos <link>-->
-  <link href="../../assets/css/style.css" rel="stylesheet" />
-  <link href="../../assets/css/styleLogin.css" rel="stylesheet" />
+
+  <?php
+    include('../assets/css.php');
+  ?>
 </head>
 <!--El cuerpo representa la parte visible de todo documento y es especificado entre etiquetas <body>-->
 

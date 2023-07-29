@@ -44,277 +44,191 @@ $resultStatus = $resultArray[2];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Name of My Form One</title>
   <!--Etiqueta de enlace con los estilos <link>-->
-  <link href="../../assets/css/formStyle.css" rel="stylesheet" />
+  <!--Include css php-->
+  <?php
+  include('../assets/css/css.php');
+  ?>
 </head>
 <!--El cuerpo representa la parte visible de todo documento y es especificado entre etiquetas <body>-->
 
 <body>
+  <!--nav-->
+  <!--Include nav php-->
+  <?php
+  include('../assets/view/nav.php');
+  ?>
+  <!--End nav-->
+  <!--Container-->
+  <div class="container">
+    <!--*****************************************************************************************************************-->
+    <!--Estructura inicial del formulario-->
+    <!--La etiqueta clave div solo especifica una división en el cuerpo, como la celda de una tabla-->
+    <!--Inicio de división etiqueta <div>-->
+    <!--Etiqueta div - name => permite a un script acceder a su contenido <div>-->
+    <!--Etiqueta div - id => permite a un script o al css acceder a su contenido <div>-->
+    <!--Etiqueta div - class => permite a una clase de css acceder a su contenido <div>-->
+    <div id="sectionOne" class="sectionOne" name="sectionOne">
+      <!--Etiqueta h2 de titulo <h2>-->
+      <h2>REGISTRAR USUARIO</h2>
 
-  <!--*****************************************************************************************************************-->
-  <!--Estructura inicial del formulario-->
-  <!--La etiqueta clave div solo especifica una división en el cuerpo, como la celda de una tabla-->
-  <!--Inicio de división etiqueta <div>-->
-  <!--Etiqueta div - name => permite a un script acceder a su contenido <div>-->
-  <!--Etiqueta div - id => permite a un script o al css acceder a su contenido <div>-->
-  <!--Etiqueta div - class => permite a una clase de css acceder a su contenido <div>-->
-  <div id="sectionOne" class="sectionOne" name="sectionOne">
-    <!--Etiqueta h2 de titulo <h2>-->
-    <h2>REGISTRAR USUARIOS</h2>
+      <!--Inicio de formulario - etiqueta de formulario <form>-->
+      <!--Formulario form - name => permite a un script acceder a su contenido <input>-->
+      <!--Formulario form - id => permite a un script o al css acceder a su contenido <form>-->
+      <!--Formulario form - class => permite a una clase de css acceder a su contenido <form>-->
+      <form name="formUser" method="GET" action="../../controller/user/insert.php" id="formUser" class="row">
+        <!--Inicio de tabla para los contenidos del formulario - etiqueta de tabla <table>-->
+        <!--Etiqueta table - name => permite a un script acceder a su contenido <table>-->
+        <!--Etiqueta table - id => permite a un script o al css acceder a su contenido <div>-->
+        <!--Etiqueta table - class => permite a una clase de css acceder a su contenido <div>-->
+        <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
+        <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
+        <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
+        <!--Caja de texto etiqueta input - type => hidden campo oculto en el html<input>-->
+        <input type="hidden" value="" id="User_id" name="User_id" />
 
-    <!--Inicio de formulario - etiqueta de formulario <form>-->
-    <!--Formulario form - name => permite a un script acceder a su contenido <input>-->
-    <!--Formulario form - id => permite a un script o al css acceder a su contenido <form>-->
-    <!--Formulario form - class => permite a una clase de css acceder a su contenido <form>-->
-    <form name="formUser" method="GET" action="../../controller/user/insert.php" id="formUser" class="formUser">
-      <!--Inicio de tabla para los contenidos del formulario - etiqueta de tabla <table>-->
-      <!--Etiqueta table - name => permite a un script acceder a su contenido <table>-->
-      <!--Etiqueta table - id => permite a un script o al css acceder a su contenido <div>-->
-      <!--Etiqueta table - class => permite a una clase de css acceder a su contenido <div>-->
-      <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
-      <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
-      <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-      <!--Caja de texto etiqueta input - type => hidden campo oculto en el html<input>-->
-      <input type="hidden" value="" id="User_id" name="User_id" />
-      <table name="tableUser" id="tableUser" class="tableUser">
-        <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
-        <tr>
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--Caja de texto etiqueta input - type => tipo texto <input>-->
-            <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
-            <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
-            <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
-            <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="text" value="" placeholder="Digitar Nombre" id="User_name" name="User_name" required />
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+        <div class="col-4">
+          <div class="form-floating mb-1">
+            <input type="text" class="form-control form-control-sm" id="User_name" name="User_name"
+              placeholder="Digitar Nombre" required>
+            <label for="User_name">Digitar Nombre</label>
+          </div>
+        </div>
 
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--Caja de texto etiqueta input - type => tipo texto <input>-->
-            <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
-            <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
-            <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
-            <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="text" value="" placeholder="Digitar Apellido" id="User_lastName" name="User_lastName" required />
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--Caja de texto etiqueta input - type => tipo texto <input>-->
-            <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
-            <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
-            <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
-            <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="number" value="" placeholder="Digitar Documento" id="User_document" name="User_document" required />
+        <div class="col-4">
+          <div class="form-floating mb-1">
+            <input type="text" class="form-control form-control-sm" id="User_lastName" name="User_lastName"
+              placeholder="Digitar Apellido" required>
+            <label for="User_lastName">Digitar Apellido</label>
+          </div>
+        </div>
 
-          </td>
+        <div class="col-4">
+          <div class="form-floating mb-1">
+            <input type="number" class="form-control form-control-sm" id="User_document" name="User_document"
+              placeholder="Digitar Documento" required>
+            <label for="User_document">Digitar Documento</label>
+          </div>
+        </div>
 
-        </tr>
-        <!--Cierre de fila para de la tabla - etiqueta de fila <tr>-->
+        <div class="col-4">
+          <div class="form-floating mb-1">
+            <input type="email" class="form-control form-control-sm" id="User_email" name="User_email"
+              placeholder="Digitar Correo Electrónico" required>
+            <label for="User_email">Digitar Correo Electrónico</label>
+          </div>
+        </div>
 
-        <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
-        <tr>
 
-          <td>
-            <!--Caja de texto etiqueta input - type => tipo email <input>-->
-            <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
-            <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
-            <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
-            <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="email" value="" placeholder="Digitar Correo Electrónico" id="User_email" name="User_email" required />
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+        <div class="col-4">
+          <div class="form-floating mb-1">
+            <input type="number" class="form-control form-control-sm" id="User_cellphone" name="User_cellphone"
+              placeholder="Digitar Número de Celular" required>
+            <label for="User_cellphone">Digitar Número de Celular</label>
+          </div>
+        </div>
 
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--Caja de texto etiqueta input - type => tipo texto <input>-->
-            <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
-            <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
-            <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
-            <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="number" value="" placeholder="Digitar Número de Celular" id="User_cellphone" name="User_cellphone" required />
-            
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--Caja de texto etiqueta input - type => tipo date <input>-->
-            <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
-            <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
-            <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
-            <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="date" value="" placeholder="Fecha de Nacimiento" id="User_birthdate" name="User_birthdate" required />
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+        <div class="col-4">
+          <div class="form-floating mb-1">
+            <input type="date" class="form-control form-control-sm" id="User_birthdate" name="User_birthdate"
+              placeholder="Fecha de Nacimiento" required>
+            <label for="User_birthdate">Fecha de Nacimiento</label>
+          </div>
+        </div>
 
-        </tr>
-        <!--Cierre de fila para de la tabla - etiqueta de fila <tr>-->
+        <div class="col-4">
+          <div class="form-floating">
+            <select class="form-select" id="DocumentType_id" name="DocumentType_id" aria-label="Floating label select example">
+              <option selected>Open this select menu</option>
 
-        <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
-        <tr>
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--La etiqueta select (<select>) de HTML representa un control que muestra un menú de opciones-->
-            <!--Inicio de la lista <select>-->
-            <!--lista de selección select - required => indica que la caja de texto es requerida (obligatoria) <select>-->
-            <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
-            <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
-            <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
-            <select name="DocumentType_id" id="DocumentType_id" required>
-              <!--Inicio de etiqueta de opciones de lista <option>-->
-              <!--Valor de la opción - value => valor de la opción <option>-->
               <?php
-              for ($i = 0; $i < count($resultDocumentType); $i++) {
-                echo '<option value="' . $resultDocumentType[$i][0] . '">' . $resultDocumentType[$i][1] . '</option>';
-              };
-              ?>
+                for ($i = 0; $i < count($resultDocumentType); $i++) {
+                  echo '<option value="' . $resultDocumentType[$i][0] . '">' . $resultDocumentType[$i][1] . '</option>';
+                }
+                ;
+                ?>
             </select>
-            <!--Cierre de la lista <select>-->
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+            <label for="DocumentType_id">Tipo de Documento</label>
+          </div>
+        </div>
 
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--La etiqueta select (<select>) de HTML representa un control que muestra un menú de opciones-->
-            <!--Inicio de la lista <select>-->
-            <!--lista de selección select - required => indica que la caja de texto es requerida (obligatoria) <select>-->
-            <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
-            <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
-            <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
-            <select name="GenderType_id" id="GenderType_id" required>
-              <!--Inicio de etiqueta de opciones de lista <option>-->
-              <!--Valor de la opción - value => valor de la opción <option>-->
+        <div class="col-4">
+          <div class="form-floating">
+            <select class="form-select" id="GenderType_id" name="GenderType_id" aria-label="Floating label select example">
+              <option selected>Open this select menu</option>
+
               <?php
-              for ($i = 0; $i < count($resultGenderType); $i++) {
-                echo '<option value="' . $resultGenderType[$i][0] . '">' . $resultGenderType[$i][1] . '</option>';
-              };
-
-              ?>
-
-              <!--Cierre de etiqueta de opciones de lista <option>-->
+                 
+                 for ($i = 0; $i < count($resultGenderType); $i++) {
+                   echo '<option value="' . $resultGenderType[$i][0] . '">' . $resultGenderType[$i][1] . '</option>';
+                 };
+                ?>
             </select>
-            <!--Cierre de la lista <select>-->
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
+            <label for="GenderType_id">Genero</label>
+          </div>
+        </div>
 
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--La etiqueta select (<select>) de HTML representa un control que muestra un menú de opciones-->
-            <!--Inicio de la lista <select>-->
-            <!--lista de selección select - required => indica que la caja de texto es requerida (obligatoria) <select>-->
-            <!--lista de selección select - name => permite a un script acceder a su contenido <select>-->
-            <!--lista de selección select - id => permite a un script o al css acceder a su contenido <select>-->
-            <!--lista de selección select - class => permite a una clase de css acceder a su contenido <select>-->
-            <select name="Status_id" id="Status_id" required>
-              <!--Inicio de etiqueta de opciones de lista <option>-->
-              <!--Valor de la opción - value => valor de la opción <option>-->
+        <div class="col-4">
+          <div class="form-floating">
+            <select class="form-select" id="Status_id" name="Status_id" aria-label="Floating label select example">
+              <option selected>Open this select menu</option>
               <?php
-              for ($i = 0; $i < count($resultStatus); $i++) {
-                echo '<option value="' . $resultStatus[$i][0] . '">' . $resultStatus[$i][1] . '</option>';
-              };
-              ?>
+                for ($i = 0; $i < count($resultStatus); $i++) {
+                  echo '<option value="' . $resultStatus[$i][0] . '">' . $resultStatus[$i][1] . '</option>';
+                }
+                ;
+                ?>
             </select>
-            <!--Cierre de la lista <select>-->
-
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
-        </tr>
-        <!--Cierre de fila para de la tabla - etiqueta de fila <tr>-->
+            <label for="Status_id">Estado</label>
+          </div>
+        </div>
 
 
-        <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
-        <tr>
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td colspan="3">
-            <!--Caja de texto etiqueta input - type => tipo submit <input>-->
-            <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
-            <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
-            <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <button type="submit" value="" id="btnSubmit" name="btnSubmit" class="btnSubmit"><img src="../../assets/img/icons/add.png">
-            </button>
+        <h3>SEGURIDAD</h3>
 
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
-        </tr>
+        <div class="col-4">
+          <div class="form-floating mb-1">
+            <input type="email" class="form-control form-control-sm" id="User_user" name="User_user"
+              placeholder="Digitar Usuario - Electrónico" required>
+            <label for="User_user">Digitar Usuario - Correo Electrónico</label>
+          </div>
+        </div>
 
-      </table>
-      <!--Cierre de tabla para los contenidos del formulario - etiqueta de tabla <table>-->
-      <h3>SEGURIDAD</h3>
-      <table class="tableUser">
-        <!--Inicio de fila para de la tabla - etiqueta de fila <tr>-->
-        <tr>
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--Caja de texto etiqueta input - type => tipo texto <input>-->
-            <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
-            <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
-            <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
-            <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="email" value="" placeholder="Digitar Usuario" id="User_user" name="User_user" required />
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--Caja de texto etiqueta input - type => tipo texto <input>-->
-            <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
-            <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
-            <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
-            <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="password" value="" placeholder="Digitar Contraseña" id="User_password" name="User_password" required />
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
 
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td>
-            <!--Caja de texto etiqueta input - type => tipo texto <input>-->
-            <!--Caja de texto etiqueta input - value => valor de la caja de texto <input>-->
-            <!--Caja de texto etiqueta input - placeholder => Texto de referencia en el campo de texto <input>-->
-            <!--Caja de texto etiqueta input - required => indica que la caja de texto es requerida (obligatoria) <input>-->
-            <!--Caja de texto etiqueta input - name => permite a un script acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - id => permite a un script o al css acceder a su contenido <input>-->
-            <!--Caja de texto etiqueta input - class => permite a una clase de css acceder a su contenido <input>-->
-            <input type="password" value="" placeholder="Repetir Contraseña" id="passwordRepeat" name="passwordRepeat" required />
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
-          <!--Inicio de columna para de la tabla - etiqueta de columna <td>-->
-          <td style="text-align: center;">
-            <button type="button" name="btnViewPassword" id="btnViewPassword" class="btnViewPassword" value=""> <img src="../../assets/img/icons/lock.png" width="30px"> </button>
+        <div class="col-4">
+          <div class="form-floating mb-1">
+            <input type="password" class="form-control form-control-sm" id="User_password" name="User_password"
+              placeholder="Digitar Contraseña" required>
+            <label for="User_password">Digitar Contraseña</label>
+          </div>
+        </div>
 
-          </td>
-          <!--Cierre de columna para de la tabla - etiqueta de columna <td>-->
-        </tr>
-        <!--Cierre de fila para de la tabla - etiqueta de fila <tr>-->
-      </table>
+        <div class="col-4">
+          <div class="form-floating mb-1">
+            <input type="password" class="form-control form-control-sm" id="passwordRepeat" name="passwordRepeat"
+              placeholder="Repetir Contraseña" required>
+            <label for="passwordRepeat">Repetir Contraseña</label>
+          </div>
+        </div>
+        <button type="submit" value="" id="btnSubmit" name="btnSubmit" class="btn btn-success">CREAR USUARIO
+              </button>
+      </form>
+      <!--Cierre de formulario <form>-->
+    </div>
+    <!--Cierre de división etiqueta </div>-->
 
-    </form>
-    <!--Cierre de formulario <form>-->
+    <!---End Container Table user-->
   </div>
-  <!--Cierre de división etiqueta </div>-->
-
-  <!--Etiqueta de enlace con la logíca de javascript <script>-->
-  <script src="../assets/js/main.js" type="javascript"></script>
+  <!--Container footer-->
+  <div class="bottom-0 end-0 w-100" style="background: #e2e6e9; text-align: center;">
+    <a href="#">www.miempresa.com</a>
+  </div>
+  <!--End Container footer-->
+  <?php
+  include('../assets/js/js.php');
+  ?>
 </body>
 
 </html>
 <?php
- $connect->close();
+$connect->close();
 ?>
