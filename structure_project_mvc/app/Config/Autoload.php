@@ -2,7 +2,7 @@
 /*
  *Ahutor:DIEGO CASALLAS
  *Busines: SINAPSIS TECHNOLOGIES
- *Date:13/08/2023
+ *Date:13/10/2023
  *Description:...
  */
 
@@ -17,7 +17,7 @@ try {
     $file = '../' . str_replace('\\', '/', $className) . '.php';
 
     if (file_exists($file)) {
-      ///echo ("<br>" . $file);
+      //echo ("<br>" . $file);
       require_once($file);
       return true;
     };

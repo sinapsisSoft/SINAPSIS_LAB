@@ -40,7 +40,7 @@ class Database
 		try {
 		
 			$this->conection=new PDO($this->dsn, $this->user , $this->pass);
-			echo("Online... ");
+		//echo("Online... ");
 		} catch (PDOException  $e) {
 			echo $e->getMessage();
 			exit();

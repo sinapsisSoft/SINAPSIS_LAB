@@ -1,5 +1,10 @@
 <?php
-
+/*
+ *Ahutor:DIEGO CASALLAS
+ *Busines: SINAPSIS TECHNOLOGIES
+ *Date:13/10/2023
+ *Description:...
+ */
 
 namespace App\Controllers\User;
 
@@ -19,8 +24,9 @@ class UserController extends Controller
   public function show()
   {
     $data['users'] = $this->model->getUserAll();
-    $data['header'] = $this->view("template/header");
-    echo ("<br> READING<br> ");
+   // $data['header'] = $this->view("template/header");
+    $data['css'] = $this->view("template/css");
+    echo ("<br> READING....<br> ");
     $data['title'] ="MY PROJECT";
     return $this->view("user/user", $data);
 

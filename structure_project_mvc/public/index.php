@@ -15,6 +15,7 @@ use App\Config\Routing;
 require_once('../app/Config/Autoload.php');
 
 $router = new Routing();
-$router->run()
+$router->run();
+
 
 ?>

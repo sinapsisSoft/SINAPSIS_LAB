@@ -33,6 +33,7 @@ class Routing
     $this->serverUri = $_SERVER['REQUEST_URI'];
 
     $this->url = explode("/", substr($this->serverUri,strpos($this->serverUri, $this->_folder),strlen($this->serverUri)));
+
     $this->matchRoute();
   }
 

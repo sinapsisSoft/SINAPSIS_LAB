@@ -6,7 +6,7 @@
  *Description:.....
  */
 var_dump($data['users']['user_user']);
-
+var_dump($data['users']['user_password']);
 
 
 ?>
