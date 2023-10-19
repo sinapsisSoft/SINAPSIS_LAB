@@ -1,12 +1,19 @@
 <?php
+/*
+ *Ahutor:DIEGO CASALLAS
+ *Busines: SINAPSIS TECHNOLOGIES
+ *Date:13/08/2023
+ *Description:...
+ */
+
 namespace App\Config;
-use App\Config;
-use Exception;
-use mysqli;
-use PDO;
-use PDOException;
 
+use \PDO;
+use \PDOException;
+use \mysqli;
+use \Exception;
 
+require_once("../app/Config/Constans.php");
 
 class Database
 {
@@ -22,7 +29,7 @@ class Database
 	{
 
 		$this->host = "localhost";
-		$this->nameDB = "project_general";
+		$this->nameDB = "my_project";
 		$this->user = "root";
 		$this->pass = "";
 		$this->dsn = "mysql:host=".$this->host.";dbname=".$this->nameDB;
@@ -33,7 +40,7 @@ class Database
 		try {
 		
 			$this->conection=new PDO($this->dsn, $this->user , $this->pass);
-			echo("Connected...");
+			echo("Online... ");
 		} catch (PDOException  $e) {
 			echo $e->getMessage();
 			exit();

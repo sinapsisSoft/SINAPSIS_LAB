@@ -1,8 +1,15 @@
 <?php
+/*
+ *Ahutor:DIEGO CASALLAS
+ *Busines: SINAPSIS TECHNOLOGIES
+ *Date:13/08/2023
+ *Description:...
+ */
 
 namespace App\Models\User;
 
-use App\Config\Database as DB;
+use App\Config\Database;
+
 
 class UserModel
 {
@@ -21,16 +28,19 @@ class UserModel
     $this->table = "user";
     $this->primary = "User_id";
     $this->attributes = array("User_passwor", "User_user", "Role_id", "UserStatus_id");
-    $objDB = new DB();
+    $objDB = new Database();
     $this->conn=$objDB->getConnectPDO();
 
   }
 
   public function getUserAll()
   {
-    $sql = "sp_select_user_all()";
-    $result = $this->conn->query($sql);
-    return $result;
+    $sql = "CALL sp_select_user_all();";
+
+    $this->result = $this->conn->prepare($sql);
+    $this->result->execute();
+    $row =  $this->result->fetch();
+    return $row;
 
   }
 

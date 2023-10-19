@@ -1,10 +1,11 @@
 <?php
+namespace App\Config;
 /*
  * Author:DIEGO CASALLAS
  * DATE: 29/09/2023
  * DESCRIPTION: THIS FUNCTIONS ROUTING
  */
-namespace App\Config;
+
 /* Database connection values */
 define("DB_HOST", "localhost");
 define("DB", "dragon_ball");
@@ -14,5 +15,14 @@ define("DB_PASS", "");
 /* Default options */
 define("DEFAULT_CONTROLLER", "home");
 define("DEFAULT_ACTION", "list");
+
+/* Default App options */
+
+define("APP_URL","http://localhost/SENA/structure_project_mvc/app/");
+define("APP_NAME","MY PROJECT");
+
+
+/* Default time zone options */
+date_default_timezone_set("America/Bogota");
 
 ?>

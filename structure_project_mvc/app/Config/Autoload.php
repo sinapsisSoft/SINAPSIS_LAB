@@ -1,17 +1,36 @@
 <?php
-namespace Config;
-class Autoload{
-  public static function run(){
+/*
+ *Ahutor:DIEGO CASALLAS
+ *Busines: SINAPSIS TECHNOLOGIES
+ *Date:13/08/2023
+ *Description:...
+ */
 
-    spl_autoload_register(function($class_Name){
- 
-      $rute=str_replace("\\","/",$class_Name).".php";
-      require_once($rute);
-    });
-
-    
-  }
+namespace App\Config;
 
 
+use Exception;
+
+try {
+
+  spl_autoload_register(function ($className) {
+    $file = '../' . str_replace('\\', '/', $className) . '.php';
+
+    if (file_exists($file)) {
+      ///echo ("<br>" . $file);
+      require_once($file);
+      return true;
+    };
+    return false;
+
+  });
+
+
+} catch (Exception $e) {
+
+  echo ($e->getMessage());
 }
+
+
+
 ?>
