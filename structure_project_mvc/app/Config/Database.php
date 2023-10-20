@@ -51,7 +51,7 @@ class Database
 	{
 		try {
 			$this->conection = null;
-			echo "Close Connecting ..";
+			//echo "Close Connecting ..";
 		} catch (PDOException $e) {
 			echo $e->getMessage();
 			exit();
@@ -61,7 +61,7 @@ class Database
 	{
 		try {
 			$this->conection = new mysqli($this->host, $this->user, $this->pass, $this->nameDB);
-			echo "Connecting ..";
+			echo "Online ..";
 		} catch (Exception $e) {
 			echo $e->getMessage();
 			exit();
@@ -72,7 +72,7 @@ class Database
 	{
 		try {
 			$this->conection->close();
-			echo "Close Connecting ..";
+			//echo "Close Connecting ..";
 		} catch (Exception $e) {
 			echo $e->getMessage();
 			exit();

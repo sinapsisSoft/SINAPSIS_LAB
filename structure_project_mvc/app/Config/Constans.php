@@ -8,7 +8,7 @@ namespace App\Config;
 
 /* Database connection values */
 define("DB_HOST", "localhost");
-define("DB", "dragon_ball");
+define("DB", "my_project");
 define("DB_USER", "root");
 define("DB_PASS", "");
 
@@ -19,7 +19,9 @@ define("DEFAULT_ACTION", "list");
 /* Default App options */
 
 define("APP_URL","http://localhost/SENA/structure_project_mvc/app/");
+define("APP_URL_PUBLIC","http://localhost/SENA/structure_project_mvc/public/");
 define("APP_NAME","MY PROJECT");
+
 
 
 /* Default time zone options */

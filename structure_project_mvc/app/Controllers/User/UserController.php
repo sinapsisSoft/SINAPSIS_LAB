@@ -11,23 +11,20 @@ namespace App\Controllers\User;
 use App\Config\Controller;
 use App\Models\User\UserModel;
 
+
 class UserController extends Controller
 {
   protected $model;
   protected $result;
   public function __construct()
   {
-    $this->model = new UserModel();
+    $this->model = new UserModel(false);
     $this->result = array();
 
   }
   public function show()
   {
     $data['users'] = $this->model->getUserAll();
-   // $data['header'] = $this->view("template/header");
-    $data['css'] = $this->view("template/css");
-    echo ("<br> READING....<br> ");
-    $data['title'] ="MY PROJECT";
     return $this->view("user/user", $data);
 
   }
