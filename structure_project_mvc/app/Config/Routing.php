@@ -9,6 +9,7 @@ namespace App\Config;
 
 use App\Controllers\User\UserController;
 use App\Controllers\Home\HomeController;
+use App\Controllers\Login\LoginController;
 use Exception;
 
 class Routing
@@ -32,14 +33,14 @@ class Routing
     $this->_defaultMethod = "show";
     $this->serverUri = $_SERVER['REQUEST_URI'];
 
-    $this->url = explode("/", substr($this->serverUri,strpos($this->serverUri, $this->_folder),strlen($this->serverUri)));
+    $this->url = explode("/", substr($this->serverUri, strpos($this->serverUri, $this->_folder), strlen($this->serverUri)));
 
     $this->matchRoute();
   }
 
   public function matchRoute()
   {
-    
+
     if (isset($this->url[1]) && isset($this->url[2])) {
       $_folderController = ucwords($this->url[1]);
       $this->_controller = ucwords($this->url[1] . "Controller");
@@ -78,6 +79,12 @@ class Routing
         default:
           $controller = new HomeController();
           break;
+        case "HomeController":
+          $controller = new HomeController();
+          break;
+        case "LoginController":
+          $controller = new LoginController();
+          break;
 
       }
       switch ($this->_method) {
@@ -96,6 +103,9 @@ class Routing
           break;
         case "delete":
           $controller->delete();
+          break;
+        case "login":
+          $controller->login();
           break;
 
       }

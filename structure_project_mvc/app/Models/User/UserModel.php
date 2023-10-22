@@ -58,6 +58,17 @@ class UserModel
     $this->objDB->closeInstance();
     return $this->result;
   }
+  public function showUserUser($user){
+
+    $sql = "CALL sp_select_user_user(?)";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(1, $user);
+    $stmt->execute();
+    $this->result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $this->objDB->closeInstance();
+    return $this->result;
+  }
+ 
   public function createUser(array $dataUser)
   {
     try {
