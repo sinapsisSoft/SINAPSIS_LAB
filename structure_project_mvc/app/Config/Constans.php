@@ -11,6 +11,7 @@ define("DB_HOST", "localhost");
 define("DB", "my_project");
 define("DB_USER", "root");
 define("DB_PASS", "");
+define("DB_TYPE_CONNECT", FALSE);
 
 /* Default options */
 define("DEFAULT_CONTROLLER", "home");

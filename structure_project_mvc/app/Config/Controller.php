@@ -7,6 +7,7 @@
  */
 
 namespace App\Config;
+//header("Content-Type: application/json");
 
 class Controller
 {

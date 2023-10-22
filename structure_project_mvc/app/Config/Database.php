@@ -12,75 +12,75 @@ use \PDO;
 use \PDOException;
 use \mysqli;
 use \Exception;
+use App\Config\App;
 
-require_once("../app/Config/Constans.php");
 
-class Database
+class Database extends App
 {
-
-	protected $host;
-	protected $nameDB;
-	protected $user;
-	protected $pass;
-	protected $conection;
-	protected $dsn;
+	private $host;
+	private $nameDB;
+	private $user;
+	private $pass;
+	private $conection;
+	private $dsn;
 
 	public function __construct()
 	{
-
-		$this->host = "localhost";
-		$this->nameDB = "my_project";
-		$this->user = "root";
-		$this->pass = "";
-		$this->dsn = "mysql:host=".$this->host.";dbname=".$this->nameDB;
-		$this->conection =null;
+		$this->host = DB_HOST;
+		$this->nameDB = DB;
+		$this->user = DB_USER;
+		$this->pass = DB_PASS;
+		$this->conection = null;
+		$this->dsn = "";
 	}
-	public function getConnectPDO()
+	public function getInstance()
 	{
 		try {
-		
-			$this->conection=new PDO($this->dsn, $this->user , $this->pass);
-		//echo("Online... ");
-		} catch (PDOException  $e) {
+			if ($this->conection == null) {
+				if (DB_TYPE_CONNECT) {
+					$this->conection = new mysqli($this->host, $this->user, $this->pass, $this->nameDB);
+					if ($this->conection->connect_errno != null) {
+						echo "Error $this->conection->connect_errno";
+						exit();
+					} else {
+						echo "Connected MYSQLI....";
+					}
+				} else {
+					$this->dsn = "mysql:host=$this->host;dbname=$this->nameDB;charset=UTF8";
+					$this->conection = new PDO($this->dsn, $this->user, $this->pass);
+					if ($this->conection) {
+						echo "Connected PDO....";
+					} else {
+						echo "Error";
+					}
+				}
+			} else {
+				return $this->conection;
+			}
+		} catch (Exception $e) {
 			echo $e->getMessage();
 			exit();
-		}
-		return $this->conection;
-	}
-	public function connectPDOClose()
-	{
-		try {
-			$this->conection = null;
-			//echo "Close Connecting ..";
 		} catch (PDOException $e) {
 			echo $e->getMessage();
 			exit();
 		}
-	}
-	public function getConnectMYSQLI()
-	{
-		try {
-			$this->conection = new mysqli($this->host, $this->user, $this->pass, $this->nameDB);
-			echo "Online ..";
-		} catch (Exception $e) {
-			echo $e->getMessage();
-			exit();
-		}
 		return $this->conection;
 	}
-	public function connectMysqliClose()
+
+
+	public function closeInstance()
 	{
 		try {
-			$this->conection->close();
-			//echo "Close Connecting ..";
+			if (DB_TYPE_CONNECT) {
+				$this->conection->close();
+			} else {
+				$this->conection = null;
+			}
 		} catch (Exception $e) {
 			echo $e->getMessage();
 			exit();
 		}
 	}
-
 }
-
-
 
 ?>
