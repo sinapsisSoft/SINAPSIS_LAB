@@ -39,6 +39,7 @@ class UserModel
 
   }
 
+  /*Method show user all*/
   public function showUserAll()
   {
     $sql = "CALL sp_select_user_all()";
@@ -48,6 +49,7 @@ class UserModel
     $this->objDB->closeInstance();
     return $this->result;
   }
+  /*Method show user id*/
   public function showUserId($id)
   {
     $sql = "CALL sp_select_user_id(?)";
@@ -58,7 +60,9 @@ class UserModel
     $this->objDB->closeInstance();
     return $this->result;
   }
-  public function showUserUser($user){
+  /*Method show user user*/
+  public function showUserUser($user)
+  {
 
     $sql = "CALL sp_select_user_user(?)";
     $stmt = $this->conn->prepare($sql);
@@ -68,7 +72,7 @@ class UserModel
     $this->objDB->closeInstance();
     return $this->result;
   }
- 
+  /*Method create user */
   public function createUser(array $dataUser)
   {
     try {
@@ -89,6 +93,7 @@ class UserModel
     return $this->result;
 
   }
+  /*Method update user */
   public function updateUser(array $dataUser)
   {
     try {
@@ -109,7 +114,7 @@ class UserModel
     return $this->result;
 
   }
-
+  /*Method delete user */
   public function deleteUser($id)
   {
     try {
@@ -129,7 +134,25 @@ class UserModel
 
 
   }
+  /*Method module user */
+  public function modelUser($id)
+  {
+    try {
+      $sql = "CALL sp_select_user_module(?)";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindParam(1, $id);
+      $stmt->execute();
+      $this->result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      $this->objDB->closeInstance();
+    } catch (Exception $e) {
+      //echo $e->getMessage();
+      $this->result = false;
+    }
 
+    return $this->result;
+
+
+  }
 
 }
 ?>

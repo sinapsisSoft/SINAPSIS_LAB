@@ -91,6 +91,16 @@ class UserController extends Controller
       header("Location: " . $this->routeDefautl);
     }
   }
+
+    /*Method get modules user */
+    public function userModule()
+    {
+      
+      $data['module'] = $this->model->modelUser(1);
+
+      var_dump($data['module'][1]['module_name']);
+     
+    }
   /*Method get data info */
 
   public function getDataModel($getShares)

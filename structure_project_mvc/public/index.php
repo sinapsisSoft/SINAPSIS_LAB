@@ -11,7 +11,7 @@
 namespace App;
 
 use App\Config\Routing;
-use App\Config\Constans;
+
 
 require_once('../app/Config/Autoload.php');
 
@@ -30,19 +30,15 @@ require_once('../app/Config/Autoload.php');
   <!-- Bootstrap Font Icon CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
-
 </head>
 
 <body>
   <div class="container-fluid">
     <?php
-    session_start();
-    if (!isset($_SESSION["newsession"])) {
-      header("Location: " . DEFAULT_ROUTE);
-    } else {
+   
       $router = new Routing();
       $router->run();
-    }
+    
     ?>
 
   </div>

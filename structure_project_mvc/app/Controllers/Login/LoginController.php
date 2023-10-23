@@ -77,5 +77,12 @@ class LoginController extends Controller
     ];
     return $data;
   }
+ /*Method  signOff*/
+  public function signOff()
+  {
+    session_start();
+    unset($_SESSION["newsession"]);
+    header("Location: " . $this->routeDefautl);
+  }
 }
 ?>

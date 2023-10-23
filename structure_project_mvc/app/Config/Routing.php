@@ -107,6 +107,13 @@ class Routing
         case "login":
           $controller->login();
           break;
+        case "signOff":
+          $controller->signOff();
+          break;
+        case "userModule":
+          $controller->userModule();
+          break;
+
 
       }
 
