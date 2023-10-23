@@ -28,50 +28,54 @@ class LoginController extends Controller
     $this->primary = "user_id";
 
   }
-  
+
   public function show()
   {
-  
-      
-      return $this->view("login/login");
-    
+
+
+    return $this->view("login/login");
+
   }
   public function login()
   {
-    if($_SERVER['REQUEST_METHOD']=="POST"){
-      $modelUser=$this->getDataModel(null);
-      $userPassword=$modelUser['user_password'];
-      $userEmail=$modelUser['user_user'];
-      $this->result=$this->model->showUserUser($userEmail);
-      
-      if(count($this->result)>0){
-      if (password_verify($userPassword, $this->result[0]["user_password"])) {
-          echo 'Password is valid!';
+    $this->routeDefautl = APP_URL_PUBLIC . 'home/show';
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+      $modelUser = $this->getDataModel(null);
+      $userPassword = $modelUser['user_password'];
+      $userEmail = $modelUser['user_user'];
+      $this->result = $this->model->showUserUser($userEmail);
+
+      if (count($this->result) > 0) {
+        if (password_verify($userPassword, $this->result[0]["user_password"])) {
+          session_start();
+          $_SESSION["newsession"] = $this->result[0]["user_id"];
+          header("Location: " . $this->routeDefautl);
+
+        } else {
+
+          $data['message'] = "Invalid password";
+          return $this->view("login/login", $data);
+        }
+
       } else {
-          echo 'Invalid password.';
+        $data['message'] = "User does not exist error";
+        return $this->view("login/login", $data);
       }
-      var_dump($this->result[0]["user_password"]);
-      }else{
-        $data['message']="User does not exist error";
-        return $this->view("login/login",$data);
-      }
-    }else{
+    } else {
 
     }
-   
-   return $this->result;
-  }
-   /*Method get data info */
 
-   public function getDataModel($getShares)
-   {
-     $data = [
-       'user_user' => $_REQUEST['user_user'],
-       'user_password' => $_REQUEST['user_password']
-     ];
-     return $data;
-   }
+    return $this->result;
+  }
+  /*Method get data info */
+
+  public function getDataModel($getShares)
+  {
+    $data = [
+      'user_user' => $_REQUEST['user_user'],
+      'user_password' => $_REQUEST['user_password']
+    ];
+    return $data;
+  }
 }
 ?>
-
-
