@@ -2,7 +2,7 @@
 /*
  *Ahutor:DIEGO CASALLAS
  *Busines: SINAPSIS TECHNOLOGIES
- *Date:13/08/2023
+ *Date:23/10/2023
  *Description:...
  */
 
@@ -32,16 +32,24 @@ class ProfileModel
   {
     $this->table = "profile";
     $this->primary = "profile_id";
-    $this->attributes = array("profile_id","profile_name","profile_document","document_type_id","profile_phone","user_id","updated_at", "create_at");
+    $this->attributes = array("profile_id","profile_name","profile_document","document_type_id","profile_phone","profile_photo","user_id","updated_at", "create_at");
     $this->objDB = new Database();
     $this->conn = $this->objDB->getInstance();
     $this->result = null;
   }
+    /*Method show profile all*/
+    public function showProfileAll($id)
+    {
+      $sql = "CALL sp_select_profile_id(?)";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindParam(1, $id);
+      $stmt->execute();
+      $this->result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      $this->objDB->closeInstance();
+      return $this->result;
+    }
 
    
-
-  
- 
 
 
 }

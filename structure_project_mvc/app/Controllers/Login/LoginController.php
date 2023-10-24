@@ -40,7 +40,7 @@ class LoginController extends Controller
   {
     $this->routeDefautl = APP_URL_PUBLIC . 'home/show';
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
-      $modelUser = $this->getDataModel(null);
+      $modelUser = $this->getDataModel();
       $userPassword = $modelUser['user_password'];
       $userEmail = $modelUser['user_user'];
       $this->result = $this->model->showUserUser($userEmail);
@@ -69,7 +69,7 @@ class LoginController extends Controller
   }
   /*Method get data info */
 
-  public function getDataModel($getShares)
+  public function getDataModel()
   {
     $data = [
       'user_user' => $_REQUEST['user_user'],

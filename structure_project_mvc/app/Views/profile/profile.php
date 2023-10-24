@@ -14,7 +14,7 @@ $roles = $data['roles'];
 ?>
 <!--Container-->
 <section class="row">
-  <h3>Manage User <button type="button" onclick="resetForm()" class="btn btn-success" data-bs-toggle="modal"
+  <h3>Manage Profile <button type="button" onclick="resetForm()" class="btn btn-success" data-bs-toggle="modal"
       data-bs-target="#appModal">
       <i class="bi bi-plus-square-fill"></i>
     </button>

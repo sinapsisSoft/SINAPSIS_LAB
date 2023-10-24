@@ -39,9 +39,9 @@ class UserController extends Controller
     $data['userStatus'] = $this->modelUserStatus->showUserStatusAll();
     $data['roles'] = $this->modelRole->showRoleAll();
     if (!isset($_REQUEST[$this->primary])) {
-    $data['users'] = $this->model->showUserAll();
-    return $this->view("user/user", $data);}
-    else{
+      $data['users'] = $this->model->showUserAll();
+      return $this->view("user/user", $data);
+    } else {
       $getId = $_REQUEST[$this->primary];
       $data['user'] = $this->model->showUserId($getId);
       return $this->view("user/userShow", $data);
@@ -68,14 +68,14 @@ class UserController extends Controller
         $data['roles'] = $this->modelRole->showRoleAll();
         $data['userStatus'] = $this->modelUserStatus->showUserStatusAll();
       }
-     
+
       return $this->view("user/userEdit", $data);
     }
 
   }
   /*Method update info */
   public function update()
-  { 
+  {
     $getId = $_REQUEST[$this->primary];
     if ($this->model->updateUser($this->getDataModel($getId))) {
       header("Location: " . $this->routeDefautl);
@@ -85,22 +85,22 @@ class UserController extends Controller
   /*Method delete info */
   public function delete()
   {
-   
+
     $getId = $_REQUEST[$this->primary];
     if ($this->model->deleteUser($getId)) {
       header("Location: " . $this->routeDefautl);
     }
   }
 
-    /*Method get modules user */
-    public function userModule()
-    {
-      
-      $data['module'] = $this->model->modelUser(1);
+  /*Method get modules user */
+  public function userModule($id)
+  {
 
-      var_dump($data['module'][1]['module_name']);
-     
-    }
+    $data['module'] = $this->model->modelUser($id);
+
+    return $data['module'] ;
+
+  }
   /*Method get data info */
 
   public function getDataModel($getShares)

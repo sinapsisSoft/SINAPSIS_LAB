@@ -10,6 +10,7 @@ namespace App\Config;
 use App\Controllers\User\UserController;
 use App\Controllers\Home\HomeController;
 use App\Controllers\Login\LoginController;
+use App\Controllers\Profile\ProfileController;
 use Exception;
 
 class Routing
@@ -85,6 +86,10 @@ class Routing
         case "LoginController":
           $controller = new LoginController();
           break;
+        case "ProfileController":
+          $controller = new ProfileController();
+          break;
+
 
       }
       switch ($this->_method) {
@@ -110,11 +115,7 @@ class Routing
         case "signOff":
           $controller->signOff();
           break;
-        case "userModule":
-          $controller->userModule();
-          break;
-
-
+      
       }
 
 
