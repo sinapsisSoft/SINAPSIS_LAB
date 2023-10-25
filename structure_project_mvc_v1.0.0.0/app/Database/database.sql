@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2023 a las 11:35:37
+-- Tiempo de generación: 25-10-2023 a las 13:24:40
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -22,6 +22,51 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `my_project` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `my_project`;
+--
+-- Estructura de tabla para la tabla `brand`
+--
+
+DROP TABLE IF EXISTS `brand`;
+CREATE TABLE IF NOT EXISTS `brand` (
+  `brand_id` int(11) NOT NULL AUTO_INCREMENT,
+  `brand_name` varchar(30) NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`brand_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Truncar tablas antes de insertar `brand`
+--
+
+TRUNCATE TABLE `brand`;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+CREATE TABLE IF NOT EXISTS `customer` (
+  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_name` varchar(30) NOT NULL,
+  `customer_document` varchar(15) NOT NULL,
+  `customer_phone` varchar(15) NOT NULL,
+  `customer_email` varchar(20) NOT NULL,
+  `customer_address` varchar(40) NOT NULL,
+  `document_type_id` int(11) NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`customer_id`),
+  KEY `CUSTOMER_DOCUMENT_TYPE` (`document_type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Truncar tablas antes de insertar `customer`
+--
+
+TRUNCATE TABLE `customer`;
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `document_type`
@@ -79,6 +124,55 @@ INSERT INTO `module` (`module_id`, `module_name`, `module_route`, `updated_at`, 
 (1, 'home', 'home/show', NULL, '2023-10-19 15:15:39'),
 (2, 'user', 'user/show', NULL, '2023-10-19 15:15:39');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `product`
+--
+
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE IF NOT EXISTS `product` (
+  `product_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(20) NOT NULL,
+  `product_name_extended` varchar(100) NOT NULL,
+  `product_description` varchar(200) NOT NULL,
+  `product_image` varchar(200) NOT NULL,
+  `product_sale_value` double NOT NULL,
+  `product_purchase_value` double NOT NULL,
+  `product_type_id` int(11) NOT NULL,
+  `brand_id` int(11) NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`product_id`),
+  KEY `PRODUCT_BRAND` (`brand_id`),
+  KEY `PRODUCT_PRODUCT_TYPE` (`product_type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Truncar tablas antes de insertar `product`
+--
+
+TRUNCATE TABLE `product`;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `product_type`
+--
+
+DROP TABLE IF EXISTS `product_type`;
+CREATE TABLE IF NOT EXISTS `product_type` (
+  `product_type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_type_name` varchar(20) NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`product_type_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Truncar tablas antes de insertar `product_type`
+--
+
+TRUNCATE TABLE `product_type`;
 -- --------------------------------------------------------
 
 --
@@ -208,9 +302,9 @@ INSERT INTO `user` (`user_id`, `user_user`, `user_password`, `updated_at`, `crea
 (1, 'diego@gmail.com', '$2y$10$DEiOTP8WTMO0abrZRIHbHex8ByB2I97RfrVysetY5yQcm2J1v2oum', '2023-10-24 01:13:39', '2023-10-19 10:09:35', 1, 1),
 (3, 'camila@gmail.com', '$2y$10$Ve1nXQSfzsS9i7/dj3hlAusJ/q0/BMpevWl.i4G7v9RVPxtAeVvPe', '2023-10-24 00:55:48', '2023-10-20 10:49:15', 2, 1),
 (4, 'diegoh@gmail.com', '$2y$10$DEiOTP8WTMO0abrZRIHbHex8ByB2I97RfrVysetY5yQcm2J1v2oum', NULL, '2023-10-21 07:12:45', 1, 1),
-(5, 'diehercasvan@gmail.com', '$2y$10$BUIkiff3RmHX/TW8k84Eb.YhgAmeYyCicH5yGz3B8tl.02li/DsJG', '2023-10-24 00:56:01', '2023-10-21 08:40:00', 2, 1),
-(6, 'info@sinapsist.com.co', '$2y$10$9W1LFEJZdExD7oHjog/t0uq4d.oOXyvV5ffYXBKQNBf99gdF1eMwG', NULL, '2023-10-21 08:42:21', 1, 1),
-(7, 'info2@sinapsist.com.co', '$2y$10$emg4HQk3c1TPOyg8RJqLbeUUUAkJFrZZqAAXeXY6tnCH.0HDzZsyu', NULL, '2023-10-22 07:47:43', 1, 1);
+(5, 'dieher@gmail.com', '$2y$10$BUIkiff3RmHX/TW8k84Eb.YhgAmeYyCicH5yGz3B8tl.02li/DsJG', '2023-10-24 00:56:01', '2023-10-21 08:40:00', 2, 1),
+(6, 'info@sinapsist.com', '$2y$10$9W1LFEJZdExD7oHjog/t0uq4d.oOXyvV5ffYXBKQNBf99gdF1eMwG', NULL, '2023-10-21 08:42:21', 1, 1),
+(7, 'info@sinapsist.co', '$2y$10$emg4HQk3c1TPOyg8RJqLbeUUUAkJFrZZqAAXeXY6tnCH.0HDzZsyu', NULL, '2023-10-22 07:47:43', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -246,6 +340,19 @@ INSERT INTO `user_status` (`user_status_id`, `user_status_name`, `updated_at`, `
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `customer`
+--
+ALTER TABLE `customer`
+  ADD CONSTRAINT `CUSTOMER_DOCUMENT_TYPE` FOREIGN KEY (`document_type_id`) REFERENCES `document_type` (`document_type_id`);
+
+--
+-- Filtros para la tabla `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `PRODUCT_BRAND` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`brand_id`),
+  ADD CONSTRAINT `PRODUCT_PRODUCT_TYPE` FOREIGN KEY (`product_type_id`) REFERENCES `product_type` (`product_type_id`);
 
 --
 -- Filtros para la tabla `profile`

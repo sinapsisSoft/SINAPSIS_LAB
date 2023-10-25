@@ -1,4 +1,3 @@
-
 DELIMITER $$
 --
 -- Procedimientos
@@ -70,5 +69,3 @@ UPDATE user SET user_user=userUser, role_id=roleId,user_status_id=userStatusId, 
 END$$
 
 DELIMITER ;
-
--- --------------------------------------------------------
