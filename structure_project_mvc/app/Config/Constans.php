@@ -20,9 +20,9 @@ define("DEFAULT_ACTION", "list");
 
 
 /* Default App options */
-
-define("APP_URL","http://localhost/SENA/structure_project_mvc/app/");
-define("APP_URL_PUBLIC","http://localhost/SENA/structure_project_mvc/public/");
+define("APP_SERVER","http://localhost/SENA/");
+define("APP_URL",APP_SERVER."structure_project_mvc/app/");
+define("APP_URL_PUBLIC",APP_SERVER."structure_project_mvc/public/");
 define("APP_NAME","MY PROJECT");
 
 define("DEFAULT_ROUTE", APP_URL_PUBLIC.DEFAULT_CONTROLLER.'/'.DEFAULT_METHOD);
