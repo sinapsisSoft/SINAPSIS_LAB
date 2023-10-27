@@ -7,6 +7,7 @@
  */
 namespace App\Config;
 
+use App\Controllers\Report\ReportController;
 use App\Controllers\User\UserController;
 use App\Controllers\Home\HomeController;
 use App\Controllers\Login\LoginController;
@@ -89,7 +90,9 @@ class Routing
         case "ProfileController":
           $controller = new ProfileController();
           break;
-
+case "ReportController":
+  $controller = new ReportController();
+  break;
 
       }
       switch ($this->_method) {

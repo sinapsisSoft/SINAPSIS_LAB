@@ -35,7 +35,7 @@ require_once('../app/Config/Autoload.php');
 <body>
   <div class="container-fluid">
     <?php
-   
+     
       $router = new Routing();
       $router->run();
     
